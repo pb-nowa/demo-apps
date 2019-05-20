@@ -1,6 +1,6 @@
 <style scoped lang="less">
 .host {
-  max-width: 600px;
+  max-width: 1600px;
   margin: 0 auto;
   height: 100%;
 }
@@ -14,6 +14,9 @@
     <stake-page @stake="stake" @seeTutorial="seeTutorial" v-if="step === 3"></stake-page>
     <tutorial-page @done="doneTutorial" v-if="step === 4"></tutorial-page>
     <puzzle-page @restart="restartGame" v-if="step === 5"></puzzle-page>
+
+    <new-home-page @join="join" v-if="step === 10"></new-home-page>
+    <new-welcome-page @join="join" v-if="step === 11"></new-welcome-page>
   </div>
 </template>
 
@@ -26,6 +29,9 @@ import TutorialPage from "./TutorialPage";
 import StakePage from "./StakePage";
 import service from "../service";
 
+import NewHomePage from "./New_HomePage";
+import NewWelcomePage from "./New_WelcomePage";
+
 const StakePageIndex = 3;
 const TutorialPageIndex = 4;
 const PuzzlePageIndex = 5;
@@ -37,11 +43,13 @@ export default {
     KeyPage,
     TutorialPage,
     StakePage,
-    PuzzlePage
+    PuzzlePage,
+    NewHomePage,
+    NewWelcomePage
   },
   data() {
     return {
-      step: 5,
+      step: 11,
       userKey: "Oxhsa89sd23jkl3450stypose00"
     };
   },

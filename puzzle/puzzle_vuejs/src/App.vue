@@ -5,7 +5,7 @@
   padding: 0;
 }
 html {
-  background-image: linear-gradient(180deg, #00AEE9 0%, rgba(105, 250, 189, 0) 119.53%);
+  background: url(./assets/new/bg.png);
   height: 100%;
 }
 body,
@@ -153,6 +153,16 @@ html {
   top: 370px;
 
   background: url(./assets/pattern.svg);
+  background-repeat: no-repeat;
+}
+
+.new-logo {
+  width: 282px;
+  height: 198px;
+  margin: 0 auto;
+  margin-top: 45px;
+  background-image: url(./assets/new/puzzle-logo.png);
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
