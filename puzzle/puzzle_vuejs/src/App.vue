@@ -14,10 +14,21 @@ body,
 }
 body,
 html {
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: "Fira Sans", "Source Sans Pro", Arial, sans-serif;
   color: #2c3e50;
   font-size: 18px;
   margin: 0;
+}
+
+.btn-harmony {
+  font-family: inherit;
+  padding: 0.5em 1.5em 0.6em 1.5em !important;
+  background: #05AAFF !important;
+  border: 2px solid #13156A !important;
+  border-radius: 12px !important;
+  box-shadow:
+    inset 0px 0px 0px 0px transparent,
+    inset 0px -7px 0px 0px #304FBD;
 }
 
 .main-container {
