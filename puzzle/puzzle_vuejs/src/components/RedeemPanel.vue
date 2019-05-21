@@ -2,9 +2,11 @@
 a:link {
   text-decoration: none;
 }
+
 a:hover {
-  background-color: green;
+  background-color: lightgreen;
 }
+
 .redeem-panel-container {
   position: absolute;
   top: 0;
@@ -139,7 +141,7 @@ a:hover {
         >
         <div class="err-email">{{ err }}</div>-->
         <a :href="'https://explorer2.harmony.one/#/address/'+ globalData.address" target="_blank" class="btn btn-primary">See Transactions</a>
-        <button class="btn-primary mb1 black bg-gray" @click="cancelEmail">Exit</button>
+        <button class="btn-primary"  @click="cancelEmail">Exit</button>
       </div>
     </div>
   </div>
