@@ -113,8 +113,13 @@
         <div class="amount" :style="amountStyle">{{ reward }}</div>
         <div class="emphasis" :style="emphasisStyle">Harmony Tokens!</div>
         <div class="text" :style="contentEmailStyle">
-          <p>Get your public and private key</p>
-          <p>for your claimed token</p>
+          <p>Save your public and private key</p>
+          <p>to claim your token!</p>
+          <a
+            :href="'https://explorer2.harmony.one/#/address/' + globalData.address"
+            target="_blank"
+            class="link"
+          >View Transactions</a>
         </div>
         <div class="info">
           <div class="title" :style="emphasisStyle">Public Key</div>
