@@ -53,7 +53,7 @@ export default {
   },
   data() {
     return {
-      step: 4,
+      step: 12,
       userKey: "Oxhsa89sd23jkl3450stypose00"
     };
   },
@@ -79,7 +79,6 @@ export default {
       });
     },
     startNewWelcome() {
-      console.log("eeeeeeee ")
       this.step = NewWelcomePage;
     },
     startGame() {
