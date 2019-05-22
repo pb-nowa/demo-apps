@@ -19,9 +19,11 @@
 
 <template >
   <div class="new-home-page">
-    <div class="content">
-      <div v-on:click="toWelcome" class="new-home-logo">
-        <img src="../assets/new/puzzle-logo.png" alt="">
+    <div class="container">
+      <div class="row">
+        <div v-on:click="toWelcome" class="new-home-logo">
+          <img src="../assets/new/puzzle-logo.png" alt="">
+        </div>
       </div>
     </div>
   </div>
