@@ -1,6 +1,6 @@
 <style scoped lang="less">
-  .content {
-    margin: 3em;
+  .row-content {
+    margin: 4em;
   }
 
   .inner {
@@ -27,40 +27,51 @@
       inset 0px -10px 0px 0px #7C90E6;
     margin: 0 1.5rem;
     height: 300px;
-    width: 500px;
+    max-width: 500px;
+    width: 80%;
     text-align: center;
   }
 
   .left-button, .right-button {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
   .submit-button {
     text-align: center;
     margin-top: 2rem;
   }
+
+  .row {
+    text-align: center;
+  }
 </style>
 
 <template>
   <div class="tutorial-page">
-    <div class="new-logo"></div>
-    <div class="content">
-      <div class="inner">
-        <div class="top">
-          <div class="left-button">
-            <img src="../assets/left_button.png" alt="">
-          </div>
-          <div class="tutorial-content">
-            Tutorial content
-          </div>
-          <div class="right-button">
-            <img src="../assets/right_button.png" alt="">
-          </div>
-        </div>
+    <div class="container">
+      <div class="row">
+        <div class="new-logo"></div>
+      </div>
 
-        <div class="submit-button">
-          <button class="btn-primary btn-harmony join-now" @click="$emit('join', 5)">Got it</button>
+      <div class="row row-content">
+        <div class="inner">
+          <div class="top">
+            <div class="left-button">
+              <img src="../assets/left_button.png" alt="">
+            </div>
+            <div class="tutorial-content">
+              Tutorial content
+            </div>
+            <div class="right-button">
+              <img src="../assets/right_button.png" alt="">
+            </div>
+          </div>
+
+          <div class="submit-button">
+            <button class="btn-primary btn-harmony join-now" @click="$emit('join', 5)">Got it</button>
+          </div>
         </div>
       </div>
     </div>

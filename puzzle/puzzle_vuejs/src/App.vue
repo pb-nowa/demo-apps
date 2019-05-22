@@ -5,13 +5,18 @@
   padding: 0;
 }
 html {
-  background: url(./assets/new/bg.png);
   height: 100%;
 }
 body,
 #app {
   height: 100%;
 }
+
+#app {
+  background: url(./assets/bg.png);
+  background-repeat: no-repeat;
+}
+
 body,
 html {
   font-family: "Fira Sans", "Source Sans Pro", Arial, sans-serif;
@@ -349,15 +354,7 @@ html {
   }
 }
 
-.harmony-pattern {
-  position: absolute;
-  width: 1008px;
-  height: 673px;
-  left: -321px;
-  top: 370px;
-
-  background: url(./assets/pattern.svg);
-  background-repeat: no-repeat;
+body {
 }
 
 .new-logo {

@@ -1,7 +1,4 @@
 <style scoped lang="less">
-.content {
-  margin: 3em;
-}
 .email-input {
   border-radius: 0.5em;
   border: 0;
