@@ -17,6 +17,7 @@
 
     <new-home-page @join="join" v-if="step === 10"></new-home-page>
     <new-welcome-page @join="join" v-if="step === 11"></new-welcome-page>
+    <enter-page @join="join" v-if="step === 12"></enter-page>
   </div>
 </template>
 
@@ -25,16 +26,18 @@ import WelcomePage from "./WelcomePage";
 import PuzzlePage from "./PuzzlePage";
 import EmailPage from "./EmailPage";
 import KeyPage from "./KeyPage";
-import TutorialPage from "./TutorialPage";
 import StakePage from "./StakePage";
 import service from "../service";
 
 import NewHomePage from "./New_HomePage";
 import NewWelcomePage from "./New_WelcomePage";
+import EnterPage from "./EnterPage";
+import TutorialPage from "./TutorialPage";
 
 const StakePageIndex = 3;
 const TutorialPageIndex = 4;
 const PuzzlePageIndex = 5;
+
 export default {
   name: "HostingPage",
   components: {
@@ -45,7 +48,8 @@ export default {
     StakePage,
     PuzzlePage,
     NewHomePage,
-    NewWelcomePage
+    NewWelcomePage,
+    EnterPage
   },
   data() {
     return {
@@ -55,7 +59,13 @@ export default {
   },
   mounted: function() {},
   methods: {
-    join() {
+    join(index) {
+      console.log("eeeeeeee index", index)
+      if (index) {
+        this.step = index;
+        return;
+      }
+
       this.step++;
     },
     submitEmail(email) {
@@ -67,6 +77,10 @@ export default {
       service.stakeToken(key, value).then(() => {
         this.step = PuzzlePageIndex;
       });
+    },
+    startNewWelcome() {
+      console.log("eeeeeeee ")
+      this.step = NewWelcomePage;
     },
     startGame() {
       this.step++;

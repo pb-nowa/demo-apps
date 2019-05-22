@@ -1,57 +1,86 @@
 <style scoped lang="less">
-.content {
-  margin: 3em 1em;
+  .content {
+    margin: 3em;
+  }
 
-  label {
-    margin-top: 1em;
-    display: block;
+  .inner {
+    width: 800px;
+    margin: 0 auto;
   }
-}
-.msg {
-  padding: 1em;
-  border-radius: 0.5em;
-  color: #59504d;
-  font-family: Fira Sans, sans-serif;
-  border: 0.15em solid #979797;
-  overflow: auto;
-  background-color: #fff;
-  li {
-    list-style: none;
-    &:before {
-      content: "\1F449";
-      margin-right: 0.5em;
-    }
-  }
-  li + li {
-    margin-top: 0.5em;
-  }
-}
 
-.btn-primary {
-  display: block;
-  margin: auto;
-}
+  .top {
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    width: 60px;
+  }
+
+  .tutorial-content {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    border: 2px solid #13156A;
+    box-shadow:
+      inset 0px 0px 0px 0px transparent,
+      inset 0px -10px 0px 0px #7C90E6;
+    margin: 0 1.5rem;
+    height: 300px;
+    width: 500px;
+    text-align: center;
+  }
+
+  .left-button, .right-button {
+    display: flex;
+    align-items: center;
+  }
+
+  .submit-button {
+    text-align: center;
+    margin-top: 2rem;
+  }
 </style>
 
-<template >
+<template>
   <div class="tutorial-page">
+    <div class="new-logo"></div>
     <div class="content">
-      <div class="logo"></div>
-      <div class="msg">
-        <ul>
-          <li>Swipe or use arrow keys to move between chips</li>
-          <li>The number on chip increments by one when you move onto it</li>
-          <li>You complete the level once all the chips have the same number</li>
-        </ul>
+      <div class="inner">
+        <div class="top">
+          <div class="left-button">
+            <img src="../assets/left_button.png" alt="">
+          </div>
+          <div class="tutorial-content">
+            Tutorial content
+          </div>
+          <div class="right-button">
+            <img src="../assets/right_button.png" alt="">
+          </div>
+        </div>
+
+        <div class="submit-button">
+          <button class="btn-primary btn-harmony join-now" @click="$emit('join', 5)">Got it</button>
+        </div>
       </div>
     </div>
-
-    <button class="btn-primary" @click="$emit('done')">Got it</button>
   </div>
 </template>
 
 <script>
-export default {
-  name: "TutorialPage"
-};
+  export default {
+    name: "TutorialPage",
+
+    props: {},
+    data() {
+      return {};
+    },
+    mounted: function() {},
+    methods: {
+      backToEnterPage() {
+        console.log("eeeeeeee ")
+        this.$emit('join', 12)
+      }
+    }
+  };
 </script>
