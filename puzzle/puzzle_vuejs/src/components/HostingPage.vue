@@ -21,8 +21,6 @@
     <new-welcome-page @join="join" v-if="step === 11"></new-welcome-page>
     <enter-page @join="join" v-if="step === 12"></enter-page>
 
-    <b-button v-b-modal.modal-harmony>Launch demo modal</b-button>
-
     <b-modal id="modal-harmony" title="BootstrapVue" hide-footer hide-header>
       <p class="my-4 content">{{ this.modalMessage }}</p>
       <div class="buttons">

@@ -106,12 +106,12 @@ footer {
 
   .plus-button {
     right: -2px;
-    top: -5px;
+    top: -6px;
   }
 
   .minus-button {
     left: 0;
-    top: -5px;
+    top: -6px;
   }
 
   .value {
