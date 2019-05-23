@@ -109,10 +109,10 @@ footer {
       </button>
     </div>
     <button
-      class="btn-primary start-btn"
+      class="btn-primary btn-harmony"
       @click="stakeToken"
       :disabled="globalData.balance < 20"
-    >Start</button>
+    >Start Game</button>
   </div>
 </template>
 

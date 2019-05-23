@@ -147,35 +147,6 @@ html {
   color: white;
 }
 
-.coin-section {
-  display: flex;
-  position: relative;
-
-  .icon {
-    z-index: 2;
-  }
-
-  .value {
-    z-index: 1;
-    position: absolute;
-    left: 65px;
-    top: 15px;
-
-    font-weight: bold;
-    color: white;
-    background: #35439B;
-    border: 2px solid #13156A;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    border-radius: 12px;
-    width: 80px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-  }
-}
 
 .plus-minus-section {
   display: flex;
