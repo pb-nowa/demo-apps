@@ -81,7 +81,7 @@ export default {
   },
   data() {
     return {
-      step: 14,
+      step: 10,
       userKey: "Oxhsa89sd23jkl3450stypose00",
       modalMessage: 'Do you really want to quit?',
       noMessage: '',

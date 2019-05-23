@@ -61,7 +61,7 @@ footer {
   font-weight: bold;
 }
 .stake-row {
-  margin: 1em auto 0;
+  margin: 2em auto 0;
 }
 .icon-dark-token {
   background-size: contain;
@@ -95,17 +95,20 @@ footer {
 .plus-minus-section {
   display: flex;
   position: relative;
-  width: 210px;
+  width: 350px;
 
   .plus-button, .minus-button {
     width: 74px;
     height: 74px;
     padding: 0.5rem !important;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .plus-button {
-    right: -2px;
+    right: 0px;
     top: -6px;
   }
 
@@ -117,6 +120,7 @@ footer {
   .value {
     width: 100%;
     font-weight: bold;
+    font-size: 28px !important;
     color: white;
     text-align: center;
     background: #35439B;
@@ -125,21 +129,23 @@ footer {
     -moz-border-radius: 12px;
     border-radius: 12px;
     height: 60px;
+    font-size: 16px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    text-align: center;
+    overflow: hidden;
   }
 }
 
   .btn-startgame {
     margin-left: auto;
+    margin-top: 0 !important;
+    font-size: 36px;
   }
 </style>
 
 <template >
   <div class="flex-horizontal stake-row">
-
     <div class="plus-minus-section">
       <button class="btn-harmony minus-button"
               @click="minus"

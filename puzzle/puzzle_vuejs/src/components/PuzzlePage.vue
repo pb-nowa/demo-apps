@@ -9,6 +9,7 @@
 
   .stopwatch {
     margin-left: auto;
+    margin-right: 140px;
   }
 
   .coin-section {
@@ -273,9 +274,11 @@
 
   .level-section {
     .value {
-      left: 140px;
+      left: 135px;
       top: 4px;
+      width: 200px;
     }
+
   }
 
   // Small devices (landscape phones, 576px and up)
@@ -624,7 +627,7 @@ export default {
     stakeRowStyle() {
       return {
         width: this.boardSizePx + "px",
-        fontSize: this.boardSizePx / 20 + "px"
+        // fontSize: this.boardSizePx / 20 + "px"
       };
     },
     titleStyle() {
