@@ -5,16 +5,19 @@
 <script>
 const colors = [
   {
-    bg: "#00AEE9",
-    fg: "white"
+    bg: "#D4D3D4",
+    fg: "white",
+    insetColor: "#6A7C8B"
   },
   {
-    bg: "#00E0FF",
-    fg: "#1B2A5E"
+    bg: "#3FE6FF",
+    fg: "white",
+    insetColor: "#207F8D"
   },
   {
-    bg: "#69FABD",
-    fg: "#1B2A5E"
+    bg: "#02D69D",
+    fg: "white",
+    insetColor: "#27876E"
   },
   {
     bg: "#482AFF",
@@ -57,11 +60,24 @@ export default {
       if (idx < 0) idx += colors.length;
       return colors[idx].fg;
     },
+    insetColor: function() {
+      let idx = this.value % colors.length;
+      if (idx < 0) idx += colors.length;
+      return colors[idx].insetColor;
+    },
     style() {
+      let boxShadowStyle;
+      if (this.insetColor) {
+        boxShadowStyle = `inset 0px 0px 0px 0px transparent, inset 0px -9px 0px 0px ${this.insetColor}`;
+      } else {
+        boxShadowStyle = "none";
+      }
       return {
+        textStroke: "3px black",
         fontSize: this.boardSizePx/8 + "px",
         backgroundColor: this.backColor,
-        color: this.color
+        color: this.color,
+        boxShadow: boxShadowStyle
       };
     }
   }

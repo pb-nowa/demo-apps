@@ -238,8 +238,8 @@
     text-decoration: none;
   }
 
-
   .rank-explorer-section {
+    z-index: 3;
     position: absolute;
     right: 0;
     bottom: 200px;
@@ -275,7 +275,6 @@
       @cancelEmail="closeEmailPopup"
     ></redeem-panel>
     <div class="main-container appearing">
-
       <div class="rank-explorer-section">
         <div class="rank">
           Rank
@@ -287,11 +286,6 @@
       </div>
 
       <div class="game-container" ref="gameContainer">
-        <a
-          :href="'https://explorer2.harmony.one/#/address/' + globalData.address"
-          class="logo"
-          target="_blank"
-        ></a>
         <div class="score-container" :style="{ width: boardSizePx + 'px' }">
           <div class="coin-section" :style="infoItemStyle">
             <div class="icon">
@@ -366,21 +360,21 @@
         </div>
 
         <div class="board-wrapper" :style="boardWrapperStyle">
-          <div v-if="gameEnded || !gameStarted">
-            <div class="overlay game-over-message appearing">
-              <div class="content content-tutorial">
-                <p :style="gameOverStyle" v-if="!globalData.privkey">Logging in...</p>
-                <p :style="gameOverStyle" v-else-if="gameEnded">Game over!</p>
-                <p class="blur-text" :style="gameTutorialStyle" v-else-if="!gameStarted">
-                  <span
-                    :style="gameTutorialSmallStyle"
-                  >Move cursor to adjacent cells to increase the number by 1. Win a level by making all numbers equal!</span>
-                  <br>
-                  <br>Place bet (bottom left) and click “Start"
-                </p>
-              </div>
-            </div>
-          </div>
+<!--          <div v-if="gameEnded || !gameStarted">-->
+<!--            <div class="overlay game-over-message appearing">-->
+<!--              <div class="content content-tutorial">-->
+<!--                <p :style="gameOverStyle" v-if="!globalData.privkey">Logging in...</p>-->
+<!--                <p :style="gameOverStyle" v-else-if="gameEnded">Game over!</p>-->
+<!--                <p class="blur-text" :style="gameTutorialStyle" v-else-if="!gameStarted">-->
+<!--                  <span-->
+<!--                    :style="gameTutorialSmallStyle"-->
+<!--                  >Move cursor to adjacent cells to increase the number by 1. Win a level by making all numbers equal!</span>-->
+<!--                  <br>-->
+<!--                  <br>Place bet (bottom left) and click “Start"-->
+<!--                </p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
           <transition name="fade" v-for="(level, i) in levels" :key="i">
             <Game
               :ref="'game' + i"
@@ -397,10 +391,10 @@
           </transition>
         </div>
 
-        <stake-row 
-          v-if="!gameStarted" 
-          @stake="startGame" 
-          :style="stakeRowStyle" 
+        <stake-row
+          v-if="!gameStarted"
+          @stake="startGame"
+          :style="stakeRowStyle"
           @stakeToken="resetLevel"
         ></stake-row>
         <footer class="flex-vertical" :style="{ width: boardSizePx + '100px' }" v-if="gameStarted">
@@ -420,7 +414,6 @@
             </button>
           </div>
         </footer>
-        <div class="link-footer"></div>
       </div>
     </div>
   </div>

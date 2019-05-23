@@ -148,43 +148,6 @@ html {
 }
 
 
-.plus-minus-section {
-  display: flex;
-  position: relative;
-
-  .plus-button, .minus-button {
-    width: 74px;
-    height: 74px;
-    padding: 0.5rem !important;
-    position: absolute;
-  }
-
-  .plus-button {
-    right: -2px;
-    top: -5px;
-  }
-
-  .minus-button {
-    left: 0;
-    top: -5px;
-  }
-
-  .value {
-    width: 100%;
-    font-weight: bold;
-    color: white;
-    background: #35439B;
-    border: 2px solid #13156A;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    border-radius: 12px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-  }
-}
 
 .harmony-input {
   font-family: inherit;

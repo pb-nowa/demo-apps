@@ -62,7 +62,6 @@ footer {
 }
 .stake-row {
   margin: 1em auto 0;
-  justify-content: space-between;
 }
 .icon-dark-token {
   background-size: contain;
@@ -92,24 +91,93 @@ footer {
   font-size: 1em;
   background-color: #482bff;
 }
+
+.plus-minus-section {
+  display: flex;
+  position: relative;
+  width: 210px;
+
+  .plus-button, .minus-button {
+    width: 74px;
+    height: 74px;
+    padding: 0.5rem !important;
+    position: absolute;
+  }
+
+  .plus-button {
+    right: -2px;
+    top: -5px;
+  }
+
+  .minus-button {
+    left: 0;
+    top: -5px;
+  }
+
+  .value {
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background: #35439B;
+    border: 2px solid #13156A;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+  .btn-startgame {
+    margin-left: auto;
+  }
 </style>
 
 <template >
   <div class="flex-horizontal stake-row">
-    <div class="stake-buttons flex-horizontal">
-      <button class="btn-mini" @click="minus" :disabled="globalData.stake <= 20">
-        <font-awesome-icon icon="minus"></font-awesome-icon>
+
+    <div class="plus-minus-section">
+      <button class="btn-harmony minus-button"
+              @click="minus"
+              :disabled="globalData.stake <= 20">
+        <svg width="52" height="12" viewBox="0 0 52 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="52" height="12" rx="6" fill="white"/>
+        </svg>
       </button>
-      <div class="stake-amount flex-hv-center">
-        <div class="icon-dark-token"></div>
+
+      <div class="value">
         {{ globalData.stake }}
       </div>
-      <button class="btn-mini" @click="plus" :disabled="globalData.stake + 20 > globalData.balance">
-        <font-awesome-icon icon="plus"></font-awesome-icon>
+
+      <button class="btn-harmony plus-button"
+              @click="plus"
+              :disabled="globalData.stake + 20 > globalData.balance">
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect y="20" width="52" height="12" rx="6" fill="white"/>
+          <rect x="32" width="52" height="12" rx="6" transform="rotate(90 32 0)" fill="white"/>
+        </svg>
       </button>
     </div>
+
+<!--    <div class="stake-buttons flex-horizontal">-->
+<!--      <button class="btn-mini" @click="minus" :disabled="globalData.stake <= 20">-->
+<!--        <font-awesome-icon icon="minus"></font-awesome-icon>-->
+<!--      </button>-->
+<!--      <div class="stake-amount flex-hv-center">-->
+<!--        <div class="icon-dark-token"></div>-->
+<!--        {{ globalData.stake }}-->
+<!--      </div>-->
+<!--      <button class="btn-mini" @click="plus" :disabled="globalData.stake + 20 > globalData.balance">-->
+<!--        <font-awesome-icon icon="plus"></font-awesome-icon>-->
+<!--      </button>-->
+<!--    </div>-->
+
     <button
-      class="btn-primary btn-harmony"
+      class="btn-primary btn-harmony btn-startgame"
       @click="stakeToken"
       :disabled="globalData.balance < 20"
     >Start Game</button>

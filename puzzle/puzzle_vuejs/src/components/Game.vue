@@ -3,8 +3,8 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  align-items: space-around;
-  background-color: white;
+  align-items: flex-end;
+  background: #192552;
   outline: none;
   position: absolute;
   border-radius: 0.5em;
@@ -14,9 +14,12 @@
     background-color: #ada49f;
     position: relative;
     border-radius: 7%;
+    font-family: inherit;
+
     &.selected {
-      box-shadow: 0 0 0 0.4em rgba(0, 0, 0, 0.8);
+      border: 3px solid #FFBB1C;
     }
+
     .chip {
       position: absolute;
       width: 100%;
