@@ -7,7 +7,8 @@
 </style>
 
 <template >
-  <div class="host">
+  <div>
+<!--    <div class="host">-->
     <welcome-page @join="join" v-if="step === 0"></welcome-page>
     <email-page @submit="submitEmail" v-if="step === 1"></email-page>
     <key-page :userKey="userKey" v-if="step === 2" @start="startGame"></key-page>

@@ -147,8 +147,6 @@ html {
   color: white;
 }
 
-
-
 .harmony-input {
   font-family: inherit;
   padding: 0.5em 1.5em 0.6em 1.5em !important;
