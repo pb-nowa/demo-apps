@@ -70,7 +70,7 @@
           </div>
 
           <div class="submit-button">
-            <button class="btn-primary btn-harmony join-now" @click="$emit('join', 5)">Got it</button>
+            <button class="btn-primary btn-harmony join-now" @click="$emit('join', 12)">Got it</button>
           </div>
         </div>
       </div>

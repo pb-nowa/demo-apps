@@ -39,7 +39,7 @@
 </style>
 
 <template>
-  <div class="enter-page">
+  <div class="keygen-page">
     <div class="container">
       <div class="row">
 
@@ -48,31 +48,18 @@
       <div class="row">
         <div class="inner">
           <div class="input-div input-token">
-            <label for="" class="white-color">You have 100 Harmony tokens. How much you want to stake?</label>
+            <label for="" class="white-color">Your key has generated</label>
             <br>
             <input class="harmony-input"
-                   v-model="email"
-                   placeholder="100" type="number">
-            <br>
-            <div class="small">
-              <small class="white-color">(Stake 2x, 3x increases reward)</small>
-            </div>
-          </div>
-
-          <div class="input-div input-email">
-            <input class="harmony-input"
-                   v-model="email"
-                   placeholder="user@email.com" type="email">
+                   v-model="userKey"
+                   type="text">
           </div>
 
           <div class="submit-section">
             <button class="btn-primary btn-harmony"
-                    @click="submit">Submit</button>
+                    @click="$emit('join', 5)">Start game</button>
           </div>
 
-          <div class="view-tutorial">
-            <a v-on:click="$emit('join', 4)" href="#">View Tutorial</a>
-          </div>
         </div>
       </div>
     </div>
@@ -81,13 +68,16 @@
 
 <script>
   export default {
-    name: "EnterPage",
+    name: "KeygenPage",
 
-    props: {},
+    props: ['userKey'],
+
     data() {
       return {};
     },
-    mounted: function() {},
+    mounted: function() {
+      console.log("eeeeeeee userKey", this.userKey);
+    },
     methods: {
       submit() {
         // submit to backend

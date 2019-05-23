@@ -126,13 +126,33 @@ html {
   .badge {
     position: relative;
     font-weight: bold;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+
+    background: #4A97C2;
+    box-shadow: inset 0px 0px 0px 0px transparent, inset 0px -5px 0px 0px #244C83;
+
+    .badge-inner {
+      width: 30px;
+      height: 30px;
+      border: 3px solid #87D2FD;
+      background: #336B8A;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
 
     img {
-      width: 40px;
-      position: absolute;
-      z-index: -1;
+      width: 30px;
     }
   }
 
@@ -150,15 +170,6 @@ html {
   .name {
     margin-left: 20px;
   }
-
-  .badge-1 {
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-  }
 }
 
 .white-color {
@@ -167,6 +178,7 @@ html {
 
 .harmony-input {
   font-family: inherit;
+  color: #343D90;
   padding: 0.5em 1.5em 0.6em 1.5em !important;
   font-size: 24px;
   text-align: center;
@@ -314,6 +326,7 @@ html {
   height: 198px;
   margin: 0 auto;
   margin-top: 45px;
+  margin-bottom: 20px;
   background-image: url(./assets/new/puzzle-logo.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -356,6 +369,21 @@ p + p {
       margin-left: auto;
     }
   }
+
+.back-button, .close-button {
+  position: absolute;
+  cursor: pointer;
+}
+
+.close-button {
+  top: 2.5rem;
+  right: 2.5rem;
+}
+
+.back-button {
+  top: 2.5rem;
+  left: 2.5rem;
+}
 </style>
 
 <template>

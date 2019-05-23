@@ -11,25 +11,33 @@
     <email-page @submit="submitEmail" v-if="step === 1"></email-page>
     <key-page :userKey="userKey" v-if="step === 2" @start="startGame"></key-page>
     <stake-page @stake="stake" @seeTutorial="seeTutorial" v-if="step === 3"></stake-page>
-    <tutorial-page @done="doneTutorial" v-if="step === 4"></tutorial-page>
+    <tutorial-page
+      @join="join"
+      @done="doneTutorial" v-if="step === 4"></tutorial-page>
     <puzzle-page
       @openModal="openModal"
       @restart="restartGame"
+      @join="join"
       v-if="step === 5"></puzzle-page>
 
     <new-home-page @join="join" v-if="step === 10"></new-home-page>
     <new-welcome-page @join="join" v-if="step === 11"></new-welcome-page>
     <enter-page @join="join" v-if="step === 12"></enter-page>
+    <keygen-page
+      :userKey="userKey"
+      @join="join" v-if="step === 13"></keygen-page>
+    <leaderboard-page
+      @join="join" v-if="step === 14"></leaderboard-page>
 
     <b-modal id="modal-harmony" title="BootstrapVue" hide-footer hide-header>
       <p class="my-4 content">{{ this.modalMessage }}</p>
       <div class="buttons">
         <button class="btn-harmony"
-                @click="$bvModal.hide('modal-harmony')">
+                @click="modalClickFn">
           {{ noMessage }}
         </button>
         <button class="btn-harmony btn-right btn-harmony-secondary"
-                @click="modalClickFn">
+                @click="$bvModal.hide('modal-harmony')">
           {{ yesMessage }}
         </button>
       </div>
@@ -49,6 +57,8 @@ import NewHomePage from "./New_HomePage";
 import NewWelcomePage from "./New_WelcomePage";
 import EnterPage from "./EnterPage";
 import TutorialPage from "./TutorialPage";
+import KeygenPage from "./KeygenPage";
+import LeaderboardPage from "./LeaderboardPage";
 
 const StakePageIndex = 3;
 const TutorialPageIndex = 4;
@@ -57,6 +67,7 @@ const PuzzlePageIndex = 5;
 export default {
   name: "HostingPage",
   components: {
+    KeygenPage,
     WelcomePage,
     EmailPage,
     KeyPage,
@@ -65,11 +76,12 @@ export default {
     PuzzlePage,
     NewHomePage,
     NewWelcomePage,
-    EnterPage
+    EnterPage,
+    LeaderboardPage
   },
   data() {
     return {
-      step: 5,
+      step: 14,
       userKey: "Oxhsa89sd23jkl3450stypose00",
       modalMessage: 'Do you really want to quit?',
       noMessage: '',
