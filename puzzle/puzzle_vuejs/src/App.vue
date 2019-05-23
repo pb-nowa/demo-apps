@@ -25,6 +25,15 @@ html {
   margin: 0;
 }
 
+.btn-harmony-secondary {
+  background: #05AAFF !important;
+  border: 2px solid #13156A !important;
+  border-radius: 12px !important;
+  box-shadow:
+    inset 0px 0px 0px 0px transparent,
+    inset 0px -7px 0px 0px #304FBD;
+}
+
 .btn-harmony {
   font-family: inherit;
   cursor: pointer;
@@ -36,6 +45,15 @@ html {
   box-shadow:
     inset 0px 0px 0px 0px transparent,
     inset 0px -7px 0px 0px #304FBD;
+
+  &.btn-harmony-secondary {
+    color: #373F8F !important;
+    background: white !important;
+
+    box-shadow:
+      inset 0px 0px 0px 0px transparent,
+      inset 0px -7px 0px 0px #8391E4 !important;
+  }
 }
 
 .btn-level, .btn-reset {
@@ -290,8 +308,6 @@ html {
   }
 }
 
-body {
-}
 
 .new-logo {
   width: 282px;
@@ -309,6 +325,37 @@ p {
 p + p {
   margin-top: 1em;
 }
+  .modal-open {
+    background: #26326B;
+  }
+
+  #modal-harmony {
+    .modal-dialog {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: auto;
+      @media(max-width: 768px) {
+        min-height: calc(100vh - 20px);
+      }
+    }
+
+    .buttons {
+      display: flex;
+    }
+
+    .content {
+      text-align: center;
+      font-weight: bold;
+      color: #373F8F;
+      text-transform: uppercase;
+    }
+
+    .btn-right {
+      margin-left: auto;
+    }
+  }
 </style>
 
 <template>
