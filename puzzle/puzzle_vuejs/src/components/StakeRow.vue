@@ -134,13 +134,17 @@ footer {
     flex-direction: column;
     overflow: hidden;
   }
+}
 
-  @media (max-width: 575.98px) {
+@media (max-width: 575.98px) {
+  .stake-row {
+    flex-direction: column;
+    margin-top: 0.5rem;
     .plus-minus-section {
-      .plus-button, .minus-button {
-        width: 50px;
-        height: 50px;
-      }
+      margin: 10px;
+    }
+    .btn-startgame {
+      margin: 10px;
     }
   }
 }

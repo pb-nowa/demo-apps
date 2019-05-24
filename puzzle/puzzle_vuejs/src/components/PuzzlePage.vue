@@ -308,10 +308,9 @@
   }
 
   @media (max-width: 575.98px) {
-
     .score-container {
       margin-bottom: 0;
-      margin-top: 50px;
+      margin-top: 35px;
       svg {
         height: 50px;
         width: auto;
@@ -337,7 +336,6 @@
         height: 40px;
       }
     }
-
     .rank-explorer-section {
       position: initial;
       margin-right: -1rem;
@@ -351,7 +349,7 @@
 
     .main-container {
       .game-container {
-        margin-top: 1rem;
+        margin-top: .5rem;
       }
     }
 
@@ -372,7 +370,27 @@
         height: 30px;
       }
     }
-
+    .btn-reset {
+      svg {
+        height: 30px;
+      }
+    }
+    .level-section {
+      .btn-level {
+        padding: 0.3rem 0.5rem !important;
+      }
+      svg {
+        height: 20px;
+        width: auto;
+      }
+      .value {
+        left: 80px;
+        top: 4px;
+        width: 100px;
+        font-size: 16px;
+        height: 35px;
+      }
+    }
   }
 
 </style>
@@ -487,8 +505,9 @@
           @stakeToken="resetLevel"
         ></stake-row>
 
-        <footer :style="{ width: boardSizePx + '100px' }"
-                v-if="gameStarted">
+
+        <footer v-if="gameStarted"
+                class="container">
           <div class="coin-section level-section" :style="infoItemStyle">
             <div class="icon">
               <button class="btn-harmony btn-level">
