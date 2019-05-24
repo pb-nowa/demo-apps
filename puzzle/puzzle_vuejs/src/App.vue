@@ -19,7 +19,7 @@ body,
 
 body,
 html {
-  font-family: "Fira Sans", "Source Sans Pro", Arial, sans-serif;
+  font-family: "Fira Sans", "Source Sans Pro", Arial, sans-serif !important;
   color: #2c3e50;
   font-size: 18px;
   margin: 0;
@@ -67,7 +67,6 @@ html {
 }
 
 .tabs {
-
   .tab-headers {
     display: flex;
   }

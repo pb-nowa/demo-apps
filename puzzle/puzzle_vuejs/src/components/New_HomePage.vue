@@ -8,13 +8,58 @@
   margin: auto;
 }
 
-.new-home-logo {
-  width: 747px;
-  height: auto;
-  margin: 0 auto;
-  margin-top: 200px;
-  cursor: pointer;
+.new-home-page, .container, .row, .new-home-logo {
+  height: 100%;
+  overflow: hidden;
 }
+
+.new-home-logo {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .new-home-logo {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .new-home-logo {
+    img {
+      width: 747px;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .new-home-logo {
+    img {
+      width: 600px;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .new-home-page {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
 </style>
 
 <template >
