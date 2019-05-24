@@ -129,19 +129,21 @@ footer {
     -moz-border-radius: 12px;
     border-radius: 12px;
     height: 60px;
-    font-size: 16px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
   }
-}
 
-  .btn-startgame {
-    margin-left: auto;
-    margin-top: 0 !important;
-    font-size: 36px;
+  @media (max-width: 575.98px) {
+    .plus-minus-section {
+      .plus-button, .minus-button {
+        width: 50px;
+        height: 50px;
+      }
+    }
   }
+}
 </style>
 
 <template >
@@ -183,7 +185,7 @@ footer {
 <!--    </div>-->
 
     <button
-      class="btn-primary btn-harmony btn-startgame"
+      class="btn-harmony btn-startgame"
       @click="stakeToken"
       :disabled="globalData.balance < 20"
     >Start Game</button>
