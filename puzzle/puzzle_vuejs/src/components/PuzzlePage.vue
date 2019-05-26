@@ -294,7 +294,14 @@
 
   // Medium devices (tablets, 768px and up)
   @media (min-width: 768px) {
-
+    .score-container {
+      margin-top: 8rem;
+    }
+    .main-container {
+      .game-container {
+        margin-top: 0;
+      }
+    }
   }
 
   // Large devices (desktops, 992px and up)
@@ -392,7 +399,6 @@
       }
     }
   }
-
 </style>
 
 <template>

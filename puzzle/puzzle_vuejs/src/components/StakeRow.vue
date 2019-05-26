@@ -148,6 +148,16 @@ footer {
     }
   }
 }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .stake-row {
+    .btn-startgame {
+      margin-left: auto;
+      font-size: 26px;
+    }
+  }
+}
 </style>
 
 <template >
@@ -174,19 +184,6 @@ footer {
         </svg>
       </button>
     </div>
-
-<!--    <div class="stake-buttons flex-horizontal">-->
-<!--      <button class="btn-mini" @click="minus" :disabled="globalData.stake <= 20">-->
-<!--        <font-awesome-icon icon="minus"></font-awesome-icon>-->
-<!--      </button>-->
-<!--      <div class="stake-amount flex-hv-center">-->
-<!--        <div class="icon-dark-token"></div>-->
-<!--        {{ globalData.stake }}-->
-<!--      </div>-->
-<!--      <button class="btn-mini" @click="plus" :disabled="globalData.stake + 20 > globalData.balance">-->
-<!--        <font-awesome-icon icon="plus"></font-awesome-icon>-->
-<!--      </button>-->
-<!--    </div>-->
 
     <button
       class="btn-harmony btn-startgame"
