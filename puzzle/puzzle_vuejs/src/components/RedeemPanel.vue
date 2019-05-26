@@ -141,8 +141,8 @@ a:hover {
           v-on:keyup.enter="submitEmail"
         >
         <div class="err-email">{{ err }}</div>-->
-        <a :href="'https://explorer2.harmony.one/#/address/'+ globalData.address" target="_blank" class="btn btn-primary">See Transactions</a>
-        <button class="btn-primary" @click="cancelEmail">Done</button>
+        <a :href="'https://explorer2.harmony.one/#/address/'+ globalData.address" target="_blank" class="btn-harmony">See Transactions</a>
+        <button class="btn-harmony" @click="cancelEmail">Done</button>
       </div>
     </div>
   </div>
