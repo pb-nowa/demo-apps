@@ -475,7 +475,8 @@
       </div>
 
 
-      <div class="rank-explorer-section">
+      <div class="rank-explorer-section"
+           v-if="false">
         <div class="rank"
              @click="$emit('join', 14)">
           Rank
