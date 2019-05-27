@@ -19,13 +19,17 @@ a:hover {
 }
 .redeem-panel {
   max-width: 100%;
-  background-color: #e2fcf5;
+  background-color: white;
   z-index: 1000;
   border-radius: 0.4em;
   text-align: center;
   color: #1b295e;
   text-transform: uppercase;
   padding: 1em;
+  border: 2px solid #13156A;
+  box-shadow:
+    inset 0px 0px 0px 0px transparent,
+    inset 0px -10px 0px 0px #7C90E6;
   .emphasis,
   .amount {
     font-weight: bold;
@@ -50,6 +54,11 @@ a:hover {
     outline: none;
     margin-bottom: 0.5em;
   }
+}
+
+.btn-transactions {
+  margin-bottom: 1rem;
+  display: inline-block;
 }
 
 // zien - style message validate email
@@ -94,9 +103,11 @@ a:hover {
   width: 100%;
   .info {
     width: 100%;
+
     .title {
     }
     .copyable {
+      border: 2px solid #13156A;
       background-color: #fff;
       border-radius: 0.4em;
       text-align: center;
@@ -141,7 +152,7 @@ a:hover {
           v-on:keyup.enter="submitEmail"
         >
         <div class="err-email">{{ err }}</div>-->
-        <a :href="'https://explorer2.harmony.one/#/address/'+ globalData.address" target="_blank" class="btn-harmony">See Transactions</a>
+        <a :href="'https://explorer2.harmony.one/#/address/'+ globalData.address" target="_blank" class="btn-harmony btn-transactions">See Transactions</a>
         <button class="btn-harmony" @click="cancelEmail">Done</button>
       </div>
     </div>
