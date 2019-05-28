@@ -3,7 +3,7 @@
     display: flex;
     flex: 1;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     align-self: center;
   }
 
@@ -280,6 +280,12 @@
     }
 
   }
+  .logo-container {
+    justify-content: center;
+    img {
+      height: 100px;
+    }
+  }
 
   .btn-startgame {
     margin-left: auto;
@@ -295,7 +301,7 @@
   // Medium devices (tablets, 768px and up)
   @media (min-width: 768px) {
     .score-container {
-      margin-top: 3rem;
+      margin-top: 1rem;
     }
     .main-container {
       .game-container {
@@ -317,7 +323,7 @@
   @media (max-width: 575.98px) {
     .score-container {
       margin-bottom: 0;
-      margin-top: 35px;
+      margin-top: 0.5rem;
       svg {
         height: 50px;
         width: auto;
@@ -325,6 +331,11 @@
       img {
         height: 50px;
         width: auto;
+      }
+    }
+    .logo-container {
+      img {
+        height: 70px;
       }
     }
 
@@ -434,6 +445,9 @@
       </div>
 
       <div class="container">
+        <div class="row logo-container">
+          <img src="../assets/logo-color.svg">
+        </div>
         <div class="score-container">
           <div class="coin-section token" :style="infoItemStyle">
             <div class="icon">
