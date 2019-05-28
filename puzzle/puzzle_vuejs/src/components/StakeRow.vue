@@ -175,7 +175,7 @@ footer {
 // Large devices (desktops, 992px and up)
 @media (min-width: 768px) {
   .plus-minus-section {
-    width: 340px;
+    width: 280px;
   }
 }
 </style>
