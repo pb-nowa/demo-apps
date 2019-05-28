@@ -6,12 +6,18 @@ import './filter';
 import './icon';
 import router from './router';
 import BootstrapVue from 'bootstrap-vue'
+import VueAnalytics from 'vue-analytics'
 
 // Bootstrap styling
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
+// 'UA-122659990-3' : Production
+// id: 'UA-116836151-1' : Testing
+Vue.use(VueAnalytics, {
+  id: 'UA-122659990-3'
+})
 
 Vue.config.productionTip = false;
 

@@ -295,7 +295,7 @@
   // Medium devices (tablets, 768px and up)
   @media (min-width: 768px) {
     .score-container {
-      margin-top: 8rem;
+      margin-top: 3rem;
     }
     .main-container {
       .game-container {
@@ -732,11 +732,19 @@
       resetLevel() {
         this.$refs[`game${this.levelIndex}`][0].reset();
       },
+      /***
+       * Track analytics current level
+       * @param level
+       */
+      gaTrack(level) {
+        this.$ga.event('puzzle-game', 'game-level', 'current-level', level)
+      },
       onLevelComplete(moves) {
         if (this.levelIndex === this.levels.length - 1) {
           this.endGame();
           return;
         }
+        this.gaTrack(this.levelIndex);
         service
           .completeLevel(this.globalData.privkey, this.levelIndex + 1, moves)
           .then(rewards => {

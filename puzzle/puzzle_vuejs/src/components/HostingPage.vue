@@ -89,7 +89,8 @@ export default {
       modalClickFn: function () {}
     };
   },
-  mounted: function() {},
+  mounted: function() {
+  },
   methods: {
     join(index) {
       if (index) {
