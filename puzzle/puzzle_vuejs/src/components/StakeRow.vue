@@ -95,7 +95,7 @@ footer {
 .plus-minus-section {
   display: flex;
   position: relative;
-  width: 350px;
+  width: 100%;
 
   .plus-button, .minus-button {
     width: 74px;
@@ -142,6 +142,19 @@ footer {
     margin-top: 0.5rem;
     .plus-minus-section {
       margin: 10px;
+      width: 200px;
+      .value {
+        height: 30px;
+        font-size: 16px !important;
+      }
+    }
+    .minus-button, .plus-button {
+      width: 50px;
+      height: 50px;
+    }
+    svg {
+      width: 50px;
+      height: auto;
     }
     .btn-startgame {
       margin: 10px;
@@ -156,6 +169,13 @@ footer {
       margin-left: auto;
       font-size: 26px;
     }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 768px) {
+  .plus-minus-section {
+    width: 340px;
   }
 }
 </style>
