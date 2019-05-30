@@ -446,7 +446,11 @@
 
       <div class="container">
         <div class="row logo-container">
-          <img src="../assets/logo-color.svg">
+          <a
+            :href="'https://explorer2.harmony.one/#/address/' + globalData.address"
+            target="_blank">
+            <img src="../assets/logo-color.svg">
+          </a>
         </div>
         <div class="score-container">
           <div class="coin-section token" :style="infoItemStyle">
@@ -490,7 +494,6 @@
         </div>
       </div>
 
-
       <div class="rank-explorer-section"
            v-if="false">
         <div class="rank"
@@ -505,6 +508,28 @@
 
       <div class="game-container" ref="gameContainer">
         <div class="board-wrapper" :style="boardWrapperStyle">
+          <div v-if="gameEnded || !gameStarted">
+            <div class="overlay game-over-message appearing">
+              <div class="content content-tutorial">
+                <p :style="gameOverStyle" v-if="!globalData.privkey">Logging in...</p>
+                <p :style="gameOverStyle" v-else-if="gameEnded">Game over!</p>
+                <p class="blur-text" :style="gameTutorialStyle" v-else-if="!gameStarted">
+                  <span
+                    :style="gameTutorialSmallStyle"
+                  >Move cursor to adjacent cells to increase the number by 1. Win a level by making all numbers equal!</span>
+                  <br>
+
+<!--                  <stake-row-->
+<!--                    v-if="!gameStarted"-->
+<!--                    @stake="startGame"-->
+<!--                    :style="stakeRowStyle"-->
+<!--                    @stakeToken="resetLevel"-->
+<!--                  ></stake-row>-->
+                </p>
+              </div>
+            </div>
+          </div>
+
           <transition name="fade" v-for="(level, i) in levels" :key="i">
             <Game
               :ref="'game' + i"
@@ -527,7 +552,6 @@
           :style="stakeRowStyle"
           @stakeToken="resetLevel"
         ></stake-row>
-
 
         <footer v-if="gameStarted"
                 class="container">

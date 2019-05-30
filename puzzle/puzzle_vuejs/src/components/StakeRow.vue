@@ -62,6 +62,7 @@ footer {
 }
 .stake-row {
   margin: 2em auto 0;
+  padding: 0 1rem;
 }
 .icon-dark-token {
   background-size: contain;
