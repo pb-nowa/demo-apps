@@ -8,12 +8,23 @@ var getDifficulty  = function(level){
       return 2
   } else if (level >= 16 && level <= 30) {
       return 3
-  } else if (level >= 31 && level <= 40) {
+  } else if (level >= 31 && level <= 46) {
       return 4
+  } else if (level >= 46 && level <= 60) {
+    return 5
+  } else if (level >= 61 && level <= 75) {
+    return 6
+  } else if (level >= 76 && level <= 85) {
+    return 7
+  } else if (level >= 86 && level <= 90) {  
+    return 8
+  } else if (level >= 91 && level <= 95){ 
+    return 9
   } else {
-      return 5
-  }
+    return 10
+  }  
 }
+  
 
 var possible = function(data, selected, roll) {
   if(roll == -1)
