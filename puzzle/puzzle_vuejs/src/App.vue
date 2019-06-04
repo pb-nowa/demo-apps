@@ -181,6 +181,9 @@ p + p {
   background: #0075a2;
   color: #fff;
 }
+  button {
+    cursor: pointer;
+  }
 </style>
 
 <template>

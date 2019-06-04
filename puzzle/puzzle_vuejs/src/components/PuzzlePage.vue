@@ -202,6 +202,14 @@ footer {
   text-align: center;
   text-decoration: none;
 }
+.mute-buttons {
+  margin-left: auto;
+  width: 80px;
+
+  .mute-btn {
+    background: white !important;
+  }
+}
 </style>
 
 <template>
@@ -291,7 +299,6 @@ footer {
                     <br>
                     <span :style="gameTutorialSmallStyle"></span>
                     <br>
-
                   </p>
                 </div>
                 <div v-if="this.levelIndex === 99">
@@ -350,13 +357,16 @@ footer {
           :style="stakeRowStyle"
           @stakeToken="resetLevel"
         ></stake-row>
-   
-        <footer class="flex-vertical" :style="{ width: boardSizePx + 'px' }" v-if="gameStarted">
-          <div class="flex-horizontal action-row">
+
+        <footer class="flex-vertical level-container" :style="{ width: boardSizePx + 'px' }" v-if="gameStarted">
+          <div class="flex-horizontal">
             <span
               class="flex-grow level-text"
               :style="levelTextStyle"
             >Level: {{ levelIndex + 1 }} / {{ levels.length }}</span>
+          </div>
+
+          <div class="flex-horizontal footer-buttons">
             <button
               class="btn-primary"
               @click="resetLevel"
@@ -367,6 +377,16 @@ footer {
             >
               <font-awesome-icon icon="sync"></font-awesome-icon>
             </button>
+
+            <button
+              v-bind:class="[mute ? 'mute-btn' : '']"
+              class="btn-primary mute-buttons"
+              @click="toggleMusic">
+              <img v-if="!mute"
+                   src="../assets/music_playing.svg" alt="">
+              <img v-if="mute"
+                   src="../assets/music_mute.svg" alt="">
+            </button>
           </div>
         </footer>
         <footer class="flex-vertical" :style="{ width: boardSizePx + 'px' }" v-if="gameEnded">
@@ -376,8 +396,7 @@ footer {
               :style="levelTextStyle"
             >Level: {{ levelIndex + 1 }} / {{ levels.length }}</span>
             <button v-if="gameEnded"  class="btn-primary" @click="restartGame">
-                       Play again!  
-                     </button>
+              Play again!
             </button>
           </div>
         </footer>
@@ -463,7 +482,8 @@ export default {
       balanceIncrease: "",
       isMobile: mobilecheck(),
       reward: 0,
-      cancelEmail: false
+      cancelEmail: false,
+      mute: false
     };
   },
   mounted() {
@@ -611,12 +631,12 @@ export default {
         });
     },
     endLevel10() {
-      stopBackgroundMusic()
+      this.playBgMusic(false)
       this.isLevel10 = false;
       clearInterval(this.timer);
     },
     endGame() {
-      stopBackgroundMusic();
+      this.playBgMusic(false)
       this.isLevel10 = true;
       this.gameEnded = true;
       this.gameStarted = false;
@@ -631,7 +651,7 @@ export default {
       this.cancelEmail = true;
     },
     keepPlaying() {
-      playBackgroundMusic();
+      this.playBgMusic()
       this.isLevel10 = false;
       this.levelIndex++;
       this.startTimer();
@@ -650,6 +670,32 @@ export default {
      */
     restartGame() {
       window.location.reload();
+    },
+
+    toggleMusic() {
+      this.mute = !this.mute
+      if (this.mute) {
+        stopBackgroundMusic()
+        return
+      }
+
+      playBackgroundMusic()
+    },
+
+    /**
+     * Plays background music
+     */
+    playBgMusic(b = true) {
+      if (this.mute) {
+        return
+      }
+
+      if (b) {
+        playBackgroundMusic()
+        return
+      }
+
+      stopBackgroundMusic()
     }
   }
 };
