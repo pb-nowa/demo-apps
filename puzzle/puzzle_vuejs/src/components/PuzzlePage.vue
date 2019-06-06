@@ -34,7 +34,7 @@ footer {
 .game-over-message {
   font-weight: bold;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 0.3em;
 }
 
@@ -306,7 +306,7 @@ footer {
                     <br>
                     <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
-                    <span v-if="gameEnded" :style="gameTutorialSmallStyle">Don't forget to tweet your success!</span>
+                    <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
                     <br>
                     <br>
                     <br>
@@ -361,7 +361,7 @@ footer {
                     <br>
                     <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">Enter your binance coupon code: </span>
+                    <span :style="gameTutorialSmallStyle">Enter Binance Coupon Code: </span>
                     <br>
                   </p>
 
@@ -530,7 +530,7 @@ export default {
     return {
       // constants
       fireworkLevel: 99,
-      showCouponLevel: 5,
+      showCouponLevel: 9,
 
       // variables
       globalData: store.data,
@@ -728,7 +728,7 @@ export default {
         .completeLevel(this.globalData.privkey, this.levelIndex + 1, moves)
         .then(rewards => {
           this.levelIndex++;
-          let timeChange = 20;
+          let timeChange = 15;
           this.secondsLeft += timeChange;
           this.timeIncrease = `+${timeChange}`;
           this.balanceIncrease = `+${rewards}`;
