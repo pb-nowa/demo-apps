@@ -87,6 +87,21 @@ footer {
   -webkit-animation: appearing 1s;
 }
 
+.is-redeemed {
+  animation: disappearing 2s;
+  -webkit-animation: disappearing 2s;
+}
+
+@keyframes disappearing {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes appearing {
   0% {
     opacity: 0;
@@ -114,7 +129,7 @@ footer {
     &.hurry-up {
       animation-name: headShake;
       animation-duration: 1s;
-      animation-timing-function: ease-int-out;
+      animation-timing-function: ease-in-out;
       animation-iteration-count: infinite;
     }
   }
@@ -333,8 +348,11 @@ footer {
             </div>
           </div>
 
-          <div class="is-level10" v-if="isLevel10 && !gameEnded">
-            <div class="overlay game-over-message appearing">
+          <div class="is-level10"
+               v-if="isLevel10 && !gameEnded">
+            <div
+              v-bind:class="[isRedeemed ? 'is-redeemed' : 'appearing']"
+              class="overlay game-over-message">
               <div class="content content-level10">
                 <div>
                   <p v-if="!isRedeemed && !isRedeeming"
@@ -372,13 +390,13 @@ footer {
                   </div>
                 </div>
 
-                <div class="buttons">
-                  <div>
-                    <button v-if="!gameEnded" class="btn-primary" @click="keepPlaying">
-                      Keep Playing!
-                    </button>
-                  </div>
-                </div>
+<!--                <div class="buttons">-->
+<!--                  <div>-->
+<!--                    <button v-if="!gameEnded" class="btn-primary" @click="keepPlaying">-->
+<!--                      Keep Playing!-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                </div>-->
                 <div>
                 </div>
               </div>
@@ -823,6 +841,9 @@ export default {
       service.submitCoupon(this.couponCode).then((res) => {
         this.redeemMessage = 'You have successfully redeemed the code.';
         this.isRedeemed = true;
+        setTimeout(() => {
+          this.keepPlaying();
+        }, 2000)
       }).catch((err) => {
         console.error(`There was an error while submitting the coupon code ${this.couponCode}: ${err}`)
         this.redeemMessage = 'Server error, please try again later. Sorry for the inconvenience.'
