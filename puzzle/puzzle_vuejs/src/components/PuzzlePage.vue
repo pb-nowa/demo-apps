@@ -356,8 +356,9 @@ footer {
                   </div>
 
                   <div v-if="!isRedeeming" class="inputs">
-                    <input v-if="!isRedeemed"
-                      class="input" v-model="couponCode" placeholder="Enter coupon code">
+                    <input v-if="!isRedeemed" class="input" v-model="couponCode"
+                           @input="onCouponChange"
+                           placeholder="Enter coupon code">
                     <span
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}</span>
@@ -831,7 +832,19 @@ export default {
       })
     },
 
+    onCouponChange(e) {
+      if (this.couponCode === '') {
+        this.redeemMessage = '';
+        return;
+      }
+      const isValidCouponCode = this.validCouponCode(this.couponCode);
+      if (!isValidCouponCode) {
+        this.redeemMessage = 'Coupon code is not valid.';
+        return;
+      }
 
+      this.redeemMessage = '';
+    }
   }
 };
 </script>
