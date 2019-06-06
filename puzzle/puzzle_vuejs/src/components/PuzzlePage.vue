@@ -34,7 +34,7 @@ footer {
 .game-over-message {
   font-weight: bold;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 0.3em;
 }
 
@@ -343,7 +343,7 @@ footer {
                     <br>
                     <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1}}</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">Enter Binance coupon code: </span>
+                    <span :style="gameTutorialSmallStyle">Enter Binance Coupon Code: </span>
                     <br>
                   </p>
 
