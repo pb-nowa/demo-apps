@@ -525,6 +525,8 @@ export default {
       isLevel10: false,
       secondsLeft: InitialSeconds,
       timer: null,
+      timePlayedTimer: null,
+      timePlayed: 0,
       timeIncrease: "",
       balanceIncrease: "",
       isMobile: mobilecheck(),
@@ -658,6 +660,7 @@ export default {
       this.reward = 0;
       this.levels = levels();
       this.secondsLeft = InitialSeconds;
+      this.startTimePlayed();
       this.timer = setInterval(() => {
         this.secondsLeft--;
         if (this.secondsLeft <= 0) {
@@ -691,6 +694,7 @@ export default {
     },
     onLevelComplete(moves) {
       this.gaTrack(this.levelIndex);
+      this.trackTimePlayed();
 
       if (this.levelIndex === this.showCouponLevel) {
         this.endLevel10()
@@ -720,6 +724,7 @@ export default {
       stopBackgroundMusic()
       this.isLevel10 = true;
       clearInterval(this.timer);
+      clearInterval(this.timePlayedTimer)
     },
     endGame() {
       stopBackgroundMusic();
@@ -728,6 +733,7 @@ export default {
       this.gameStarted = false;
       store.data.stake = 20;
       clearInterval(this.timer);
+      clearInterval(this.timePlayedTimer)
       this.timer = null;
     },
     endLastGame() {
@@ -753,6 +759,22 @@ export default {
           this.endGame();
         }
       }, 1000);
+    },
+
+    startTimePlayed() {
+      this.timePlayedTimer = setInterval(() => {
+        this.timePlayed++;
+      }, 1000);
+    },
+
+    resetTimePlayed() {
+      this.timePlayed = 0;
+    },
+
+    trackTimePlayed() {
+      const currentLevel = this.levelIndex + 1;
+      this.$ga.event('time-played', `game-level-${currentLevel}`, this.timePlayed.toString())
+      this.resetTimePlayed();
     },
 
     /**
