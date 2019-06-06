@@ -87,6 +87,21 @@ footer {
   -webkit-animation: appearing 1s;
 }
 
+.is-redeemed {
+  animation: disappearing 2s;
+  -webkit-animation: disappearing 2s;
+}
+
+@keyframes disappearing {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes appearing {
   0% {
     opacity: 0;
@@ -114,7 +129,7 @@ footer {
     &.hurry-up {
       animation-name: headShake;
       animation-duration: 1s;
-      animation-timing-function: ease-int-out;
+      animation-timing-function: ease-in-out;
       animation-iteration-count: infinite;
     }
   }
@@ -289,7 +304,7 @@ footer {
                   <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1 }}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
                     <span v-if="gameEnded" :style="gameTutorialSmallStyle">Don't forget to tweet your success!</span>
                     <br>
@@ -333,15 +348,18 @@ footer {
             </div>
           </div>
 
-          <div class="is-level10" v-if="isLevel10 && !gameEnded">
-            <div class="overlay game-over-message appearing">
+          <div class="is-level10"
+               v-if="isLevel10 && !gameEnded">
+            <div
+              v-bind:class="[isRedeemed ? 'is-redeemed' : 'appearing']"
+              class="overlay game-over-message">
               <div class="content content-level10">
                 <div>
                   <p v-if="!isRedeemed && !isRedeeming"
                     class="blur-text" :style="gameTutorialStyle">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1}}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
                     <span :style="gameTutorialSmallStyle">Enter your binance coupon code: </span>
                     <br>
@@ -356,8 +374,9 @@ footer {
                   </div>
 
                   <div v-if="!isRedeeming" class="inputs">
-                    <input v-if="!isRedeemed"
-                      class="input" v-model="couponCode" placeholder="Enter coupon code">
+                    <input v-if="!isRedeemed" class="input" v-model="couponCode"
+                           @input="onCouponChange"
+                           placeholder="Enter coupon code">
                     <span
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}</span>
@@ -371,13 +390,13 @@ footer {
                   </div>
                 </div>
 
-                <div class="buttons">
-                  <div>
-                    <button v-if="!gameEnded" class="btn-primary" @click="keepPlaying">
-                      Keep Playing!
-                    </button>
-                  </div>
-                </div>
+<!--                <div class="buttons">-->
+<!--                  <div>-->
+<!--                    <button v-if="!gameEnded" class="btn-primary" @click="keepPlaying">-->
+<!--                      Keep Playing!-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                </div>-->
                 <div>
                 </div>
               </div>
@@ -434,7 +453,7 @@ footer {
           <span
               class="flex-grow level-text"
               :style="levelTextStyle"
-            >Level: {{ levelIndex + 1 }} / {{ levels.length }}</span>
+            >Level: {{ levelIndex === levels.length ? levelIndex : levelIndex + 1 }} / {{ levels.length }}</span>
 
             <button v-if="gameEnded"  class="btn-primary" @click="reloadGame">
               Play again!
@@ -525,6 +544,8 @@ export default {
       isLevel10: false,
       secondsLeft: InitialSeconds,
       timer: null,
+      timePlayedTimer: null,
+      timePlayed: 0,
       timeIncrease: "",
       balanceIncrease: "",
       isMobile: mobilecheck(),
@@ -658,6 +679,7 @@ export default {
       this.reward = 0;
       this.levels = levels();
       this.secondsLeft = InitialSeconds;
+      this.startTimePlayed();
       this.timer = setInterval(() => {
         this.secondsLeft--;
         if (this.secondsLeft <= 0) {
@@ -691,6 +713,7 @@ export default {
     },
     onLevelComplete(moves) {
       this.gaTrack(this.levelIndex);
+      this.trackTimePlayed();
 
       if (this.levelIndex === this.showCouponLevel) {
         this.endLevel10()
@@ -698,7 +721,7 @@ export default {
       }
 
       if (this.levelIndex === this.levels.length - 1) {
-        this.endGame();
+        this.endLastGame();
         return;
       }
       service
@@ -720,6 +743,7 @@ export default {
       stopBackgroundMusic()
       this.isLevel10 = true;
       clearInterval(this.timer);
+      clearInterval(this.timePlayedTimer)
     },
     endGame() {
       stopBackgroundMusic();
@@ -728,7 +752,12 @@ export default {
       this.gameStarted = false;
       store.data.stake = 20;
       clearInterval(this.timer);
+      clearInterval(this.timePlayedTimer)
       this.timer = null;
+    },
+    endLastGame() {
+      this.endGame();
+      this.levelIndex = this.levels.length;
     },
     restart() {
       this.gameEnded = false;
@@ -749,6 +778,22 @@ export default {
           this.endGame();
         }
       }, 1000);
+    },
+
+    startTimePlayed() {
+      this.timePlayedTimer = setInterval(() => {
+        this.timePlayed++;
+      }, 1000);
+    },
+
+    resetTimePlayed() {
+      this.timePlayed = 0;
+    },
+
+    trackTimePlayed() {
+      const currentLevel = this.levelIndex + 1;
+      this.$ga.event('time-played', `game-level-${currentLevel}`, this.timePlayed.toString())
+      this.resetTimePlayed();
     },
 
     /**
@@ -796,6 +841,9 @@ export default {
       service.submitCoupon(this.couponCode).then((res) => {
         this.redeemMessage = 'You have successfully redeemed the code.';
         this.isRedeemed = true;
+        setTimeout(() => {
+          this.keepPlaying();
+        }, 2000)
       }).catch((err) => {
         console.error(`There was an error while submitting the coupon code ${this.couponCode}: ${err}`)
         this.redeemMessage = 'Server error, please try again later. Sorry for the inconvenience.'
@@ -805,7 +853,19 @@ export default {
       })
     },
 
+    onCouponChange(e) {
+      if (this.couponCode === '') {
+        this.redeemMessage = '';
+        return;
+      }
+      const isValidCouponCode = this.validCouponCode(this.couponCode);
+      if (!isValidCouponCode) {
+        this.redeemMessage = 'Coupon code is not valid.';
+        return;
+      }
 
+      this.redeemMessage = '';
+    }
   }
 };
 </script>
