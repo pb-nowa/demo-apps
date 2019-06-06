@@ -34,7 +34,7 @@ footer {
 .game-over-message {
   font-weight: bold;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.85);
   border-radius: 0.3em;
 }
 
@@ -289,9 +289,9 @@ footer {
                   <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex}}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1 }}</span>
                     <br>
-                    <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
+                    <span v-if="gameEnded" :style="gameTutorialSmallStyle">Don't forget to tweet your success!</span>
                     <br>
                     <br>
                     <br>
@@ -341,9 +341,9 @@ footer {
                     class="blur-text" :style="gameTutorialStyle">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex}}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1}}</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">Enter your coupon: </span>
+                    <span :style="gameTutorialSmallStyle">Enter your binance coupon code: </span>
                     <br>
                   </p>
 
@@ -367,7 +367,7 @@ footer {
                   </div>
 
                   <div class="texts" v-if="!isRedeemed && !isRedeeming">
-                    <a target="_blank" href="http://harmony.one">What is BNB Code</a>
+                    <a target="_blank" href="http://harmony.one">Get Binance Coupon Code</a>
                   </div>
                 </div>
 
@@ -794,10 +794,10 @@ export default {
 
       this.isRedeeming = true;
       service.submitCoupon(this.couponCode).then((res) => {
-        this.redeemMessage = 'You have successfully redeem the code.';
+        this.redeemMessage = 'You have successfully redeemed the code.';
         this.isRedeemed = true;
       }).catch((err) => {
-        console.error(`There is an error while submit coupon ${this.couponCode}: ${err}`)
+        console.error(`There was an error while submitting the coupon code ${this.couponCode}: ${err}`)
         this.redeemMessage = 'Server error, please try again later. Sorry for the inconvenience.'
         this.isRedeemed = false;
       }).finally(() => {
