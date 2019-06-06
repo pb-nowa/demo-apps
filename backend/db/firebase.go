@@ -26,7 +26,7 @@ const (
 	winnersCollection = "winners"
 	sessionCollection = "session"
 
-	pzPlayersCollection = "pzPlayersTest"
+	pzPlayersCollection = "pzPlayersBinance"
 )
 
 // Player represents the struct of player in players db

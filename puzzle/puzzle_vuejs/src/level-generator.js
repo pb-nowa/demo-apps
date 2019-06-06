@@ -10,12 +10,30 @@ var getDifficulty  = function(level){
       return 3
   } else if (level >= 6 && level <= 7) {
       return 4
-  } else if (level >= 7 && level <= 8) {
-    return 4
-  } else if (level >= 8 && level <= 8) {
+  } else if (level >= 8 && level <= 10) {
     return 5
+  } else if (level >= 11 && level <= 20) {
+    return 7
+  }  else if (level >= 21 && level <= 40) {
+    return 8
+  } else if (level >= 41 && level <= 60) {
+    return 9
+  } else if (level >= 61 && level <= 80)  {
+    return 10
+  } else if (level >= 81 && level <= 90)  {
+    return 11
+  } else if (level >= 91 && level <= 95) {
+    return 12
+  } else if (level == 96 ) {
+    return 13
+  } else if (level == 97 ) {
+    return 14
+  } else if (level == 98 ) {
+    return 15
+  }  else if ( level == 99 ) {
+    return 16
   } else {
-      return 6
+    return 17
   }
 }
 
