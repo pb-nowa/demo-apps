@@ -88,8 +88,8 @@ footer {
 }
 
 .is-redeemed {
-  animation: disappearing 2s;
-  -webkit-animation: disappearing 2s;
+  animation: disappearing 3s;
+  -webkit-animation: disappearing 3s;
 }
 
 @keyframes disappearing {
