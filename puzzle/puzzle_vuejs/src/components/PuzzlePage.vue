@@ -289,9 +289,9 @@ footer {
                   <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1 }}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
-                    <span v-if="gameEnded" :style="gameTutorialSmallStyle">Don't forget to tweet your success!</span>
+                    <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
                     <br>
                     <br>
                     <br>
@@ -343,7 +343,7 @@ footer {
                     <br>
                     <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1}}</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">Enter your binance coupon code: </span>
+                    <span :style="gameTutorialSmallStyle">Enter Binance coupon code: </span>
                     <br>
                   </p>
 
@@ -511,7 +511,7 @@ export default {
     return {
       // constants
       fireworkLevel: 99,
-      showCouponLevel: 5,
+      showCouponLevel: 9,
 
       // variables
       globalData: store.data,
@@ -705,7 +705,7 @@ export default {
         .completeLevel(this.globalData.privkey, this.levelIndex + 1, moves)
         .then(rewards => {
           this.levelIndex++;
-          let timeChange = 20;
+          let timeChange = 15;
           this.secondsLeft += timeChange;
           this.timeIncrease = `+${timeChange}`;
           this.balanceIncrease = `+${rewards}`;
