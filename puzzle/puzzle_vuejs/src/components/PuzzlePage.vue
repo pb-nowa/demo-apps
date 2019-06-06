@@ -289,7 +289,7 @@ footer {
                   <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1 }}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
                     <span v-if="gameEnded" :style="gameTutorialSmallStyle">Don't forget to tweet your success!</span>
                     <br>
@@ -341,7 +341,7 @@ footer {
                     class="blur-text" :style="gameTutorialStyle">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex + 1}}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
                     <span :style="gameTutorialSmallStyle">Enter your binance coupon code: </span>
                     <br>
@@ -434,7 +434,7 @@ footer {
           <span
               class="flex-grow level-text"
               :style="levelTextStyle"
-            >Level: {{ levelIndex + 1 }} / {{ levels.length }}</span>
+            >Level: {{ levelIndex === levels.length ? levelIndex : levelIndex + 1 }} / {{ levels.length }}</span>
 
             <button v-if="gameEnded"  class="btn-primary" @click="reloadGame">
               Play again!
@@ -698,7 +698,7 @@ export default {
       }
 
       if (this.levelIndex === this.levels.length - 1) {
-        this.endGame();
+        this.endLastGame();
         return;
       }
       service
@@ -729,6 +729,10 @@ export default {
       store.data.stake = 20;
       clearInterval(this.timer);
       this.timer = null;
+    },
+    endLastGame() {
+      this.endGame();
+      this.levelIndex = this.levels.length;
     },
     restart() {
       this.gameEnded = false;
