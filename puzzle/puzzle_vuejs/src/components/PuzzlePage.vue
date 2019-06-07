@@ -359,12 +359,15 @@ input{
                 <div>
                   <p v-if="!isRedeemed && !isRedeeming"
                     class="blur-text" :style="gameTutorialStyle">
-                    <span :style="gameTutorialSmallStyle">Congrats!</span>
+                    <span :style="gameTutorialLargeStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">For a chance to win $30000 of $ONE</span>
+                    <span :style="gameTutorialSmallStyle">You have a chance to win</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">Enter Binance Coupon Code:</span>
+                   
+                     <span :style="gameTutorialLargeStyle">$100 of $ONE</span>
                     <br>
+                
+                    
                   </p>
 
                   <div v-if="isRedeeming" class="loading-section">
@@ -374,31 +377,34 @@ input{
                   <div v-if="isRedeemed" class="redeemed-section">
                     <i class="fas fa-check-circle"></i>
                   </div>
-
+                 <!-- <span :style="gameTutorialMediumStyle">Enter Binance Coupon Code:</span> -->
+                    
                   <div v-if="!isRedeeming" class="inputs">
                     <input v-if="!isRedeemed" class="input" v-model="couponCode"
                            @input="onCouponChange"
-                           placeholder="Enter coupon code">
+                           placeholder="Enter Binance Coupon Code">
                     <span
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}</span>
-                   
+                   <div class="buttons">
                     <button v-if="!isRedeemed"
-                      class="btn-primary" @click="enterCouponCode">Redeem code</button>
+                      class="btn-primary" @click="enterCouponCode">Redeem</button>
                   </div>
-
+                  </div>
                   <div class="texts" v-if="!isRedeemed && !isRedeeming">
                     <a target="_blank" href="http://harmony.one">Get Binance Coupon Code</a>
                   </div>
-                </div>
-
-               <div class="buttons">
+              
+                  
+                  <div class="buttons">
                   <div>
                     <button v-if="!gameEnded && !isRedeemed && !isRedeeming" class="btn-primary" @click="keepPlaying">
-                      Skip Code
+                    Skip Code
                     </button>
                   </div>
                 </div>
+                </div>
+
                 <div>
                 </div>
               </div>
@@ -532,7 +538,7 @@ export default {
     return {
       // constants
       fireworkLevel: 99,
-      showCouponLevel: 1,
+      showCouponLevel: 9,
 
       // variables
       globalData: store.data,
@@ -604,6 +610,15 @@ export default {
     /*MOVE CURSOR TO ADJACENT CELLS...*/
     gameTutorialSmallStyle() {
       return { fontSize: this.boardSizePx / 16 + "px" };
+    },
+    gameTutorialTinyStyle() {
+      return { fontSize: this.boardSizePx / 32 + "px" };
+    },
+    gameTutorialMediumStyle() {
+      return { fontSize: this.boardSizePx / 24 + "px" };
+    },
+    gameTutorialLargeStyle() {
+      return { fontSize: this.boardSizePx / 8 + "px" };
     },
     infoItemStyle() {
       return { fontSize: this.boardSizePx / 18 + "px" };
