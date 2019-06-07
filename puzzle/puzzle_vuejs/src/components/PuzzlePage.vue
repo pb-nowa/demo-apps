@@ -83,13 +83,15 @@ footer {
 }
 
 .appearing {
-  animation: appearing 1s;
-  -webkit-animation: appearing 1s;
+  animation: appearing 2s;
+  -webkit-animation: appearing 2s;
 }
-
+input{
+    text-align:center;
+}
 .is-redeemed {
-  animation: disappearing 2s;
-  -webkit-animation: disappearing 2s;
+  animation: disappearing 3s;
+  -webkit-animation: disappearing 3s;
 }
 
 @keyframes disappearing {
@@ -304,7 +306,7 @@ footer {
                   <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
+                   <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
                     <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
                     <br>
@@ -359,9 +361,9 @@ footer {
                     class="blur-text" :style="gameTutorialStyle">
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
+                    <span :style="gameTutorialSmallStyle">For a chance to win $30000 of $ONE</span>
                     <br>
-                    <span :style="gameTutorialSmallStyle">Enter Binance Coupon Code: </span>
+                    <span :style="gameTutorialSmallStyle">Enter Binance Coupon Code:</span>
                     <br>
                   </p>
 
@@ -380,7 +382,7 @@ footer {
                     <span
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}</span>
-                    <br>
+                   
                     <button v-if="!isRedeemed"
                       class="btn-primary" @click="enterCouponCode">Redeem code</button>
                   </div>
@@ -390,13 +392,13 @@ footer {
                   </div>
                 </div>
 
-<!--                <div class="buttons">-->
-<!--                  <div>-->
-<!--                    <button v-if="!gameEnded" class="btn-primary" @click="keepPlaying">-->
-<!--                      Keep Playing!-->
-<!--                    </button>-->
-<!--                  </div>-->
-<!--                </div>-->
+               <div class="buttons">
+                  <div>
+                    <button v-if="!gameEnded && !isRedeemed && !isRedeeming" class="btn-primary" @click="keepPlaying">
+                      Skip Code
+                    </button>
+                  </div>
+                </div>
                 <div>
                 </div>
               </div>
@@ -530,7 +532,7 @@ export default {
     return {
       // constants
       fireworkLevel: 99,
-      showCouponLevel: 9,
+      showCouponLevel: 1,
 
       // variables
       globalData: store.data,
