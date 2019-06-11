@@ -309,21 +309,21 @@ input{
 // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {
   .congrats-trophy img {
-    width: 125px;
+    width: 100px;
   }
 }
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
   .congrats-trophy img {
-    width: 125px;
+    width: 100px;
   }
 }
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
   .congrats-trophy img {
-    width: 120px;
+    width: 100px;
   }
 }
 
@@ -384,9 +384,13 @@ input{
                     <br>
                     <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
-                    <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
-                    <br>
-                    <br>
+                    <div 
+                      v-if="gameEnded" 
+                      style="
+                        font-size: 17px;
+                        margin: 2em 0 1.5em;
+                      "
+                    >Tweet your success!</div>
                   </div>
                 </div>
 

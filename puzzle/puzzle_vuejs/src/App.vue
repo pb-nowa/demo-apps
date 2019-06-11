@@ -5,7 +5,7 @@
   padding: 0;
 }
 html {
-  background-image: linear-gradient(180deg, #00AEE9 0%, rgba(105, 250, 189, 0) 119.53%);
+  background-image: linear-gradient(37.48deg, #4EACE3 0.55%, #6BD1D2 48.26%, #90F5C2 99.42%);;
   height: 100%;
 }
 body,
@@ -139,7 +139,7 @@ html {
 
 .info-item {
   .flex-horizontal;
-  color: #fff;
+  color: #1B295E;
   padding: 0.5em;
   width: 5em;
   text-align: center;
