@@ -220,7 +220,7 @@ input{
   text-decoration: none;
 }
 .input {
-  
+
   border-radius: 0.5em;
   border: 1px solid black;
   background-color: #fff;
@@ -254,6 +254,14 @@ input{
   .redeemed-section {
     font-size: 50px;
     color: darkgreen;
+  }
+
+  .lose-hope-image {
+    img {
+      width: 90px;
+    }
+
+    margin-bottom: 10px;
   }
 
 </style>
@@ -305,6 +313,9 @@ input{
               <div class="content content-level10">
                 <div>
                   <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
+                    <div class="congrats-trophy">
+                      <img src="../assets/congrats_trophy.svg" alt="">
+                    </div>
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
@@ -312,12 +323,14 @@ input{
                     <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
                     <br>
                     <br>
-                    <br>
                   </p>
                 </div>
 
                 <div>
                   <p class="blur-text" :style="gameTutorialStyle" v-if="showNoLoseLevel">
+                    <div class="lose-hope-image">
+                      <img src="../assets/lose_hope.svg" alt="">
+                    </div>
                     <span :style="gameTutorialSmallStyle">Don't lose hope!</span>
                     <br>
                     <span :style="gameTutorialSmallStyle">Try Again!</span>
@@ -337,7 +350,7 @@ input{
                                     url=""
                                     inline-template>
                       <network network="twitter">
-                        <a class="btn-primary">
+                        <a class="btn-primary btn-twitter">
                           <i class="fab fa-twitter"></i> Tweet
                         </a>
                       </network>
@@ -360,15 +373,14 @@ input{
                 <div>
                   <p style = "margin-bottom: 12px;" v-if="!isRedeemed && !isRedeeming"
                     class="blur-text" :style="gameTutorialStyle">
+
                     <span :style="gameTutorialGoodStyle">Congrats!</span>
                     <br>
                     <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
                     <br>
-                   
+
                      <span :style="gameTutorialGoodStyle">$20 of $ONE</span>
                     <br>
-                
-                    
                   </p>
 
                   <div v-if="isRedeeming" class="loading-section">
@@ -379,12 +391,12 @@ input{
                     <i class="fas fa-check-circle"></i>
                   </div>
                  <!-- <span :style="gameTutorialMediumStyle">Enter Binance Coupon Code:</span> -->
-                    
+
                   <div v-if="!isRedeeming" class="inputs">
                     <input  :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
                            @input="onCouponChange"
                            placeholder="Enter Binance referral ID"></input>
-                    <span 
+                    <span
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}
                     </span>
@@ -397,8 +409,8 @@ input{
                   <div class="texts" v-if="!isRedeemed && !isRedeeming">
                     <a target="_blank" href="http://harmony.one">Get Binance referral ID</a>
                   </div>
-              
-                  
+
+
                   <div class="buttons">
                   <div >
                     <button :style="bijanLessStyle" v-if="!gameEnded && !isRedeemed && !isRedeeming" class="btn-primary" @click="keepPlaying">
