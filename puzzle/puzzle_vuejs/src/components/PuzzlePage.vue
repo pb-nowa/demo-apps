@@ -48,7 +48,10 @@ footer {
 }
 
 .content-level10 {
-  background: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.5);
   .buttons {
     margin: 20px 0;
     width: 150px;
@@ -309,6 +312,7 @@ input{
 
         <div class="board-wrapper" :style="boardWrapperStyle">
           <div v-if="gameEnded">
+<!--            <div v-if="true">-->
             <div class="overlay game-over-message appearing">
               <div class="content content-level10">
                 <div>
