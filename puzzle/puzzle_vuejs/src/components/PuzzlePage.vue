@@ -1,4 +1,8 @@
 <style scoped lang="less">
+.btn-primary {
+  background: #1B295E;
+}
+
 .score-container {
   margin-right: auto;
   margin-left: auto;
@@ -12,7 +16,6 @@ footer {
   margin: 1em auto 0;
   .btn-primary {
     font-size: 1em;
-    background-color: #482bff;
   }
 }
 
@@ -47,11 +50,19 @@ footer {
   justify-content: center;
 }
 
+.continue-playing-button {
+  margin-top: 9.17892px;
+  background: none;
+  border: 1px solid #1B295E;
+  border-radius: 6px;
+  color: #1B295E;
+}
+
 .content-level10 {
-  background: rgba(255, 255, 255, 0.2);
+  // background: rgba(255, 255, 255, 0.2);
   .buttons {
     margin: 20px 0;
-    width: 150px;
+    width: 210px;
     margin: 0 auto;
     .btn-primary {
       width: 100%;
@@ -220,7 +231,6 @@ input{
   text-decoration: none;
 }
 .input {
-  
   border-radius: 0.5em;
   border: 1px solid black;
   background-color: #fff;
@@ -230,8 +240,13 @@ input{
   -webkit-appearance: none;
   font-size: initial;
   outline: none;
-  margin-bottom: 0.5em;
 }
+
+.inputs {
+  display: flex;
+  margin: 0 10px;
+}
+
   .is-level10 {
     .inputs {
       background-color: "red" !important;
@@ -254,6 +269,14 @@ input{
   .redeemed-section {
     font-size: 50px;
     color: darkgreen;
+  }
+
+  .lose-hope-image {
+    img {
+      width: 90px;
+    }
+
+    margin-bottom: 10px;
   }
 
 </style>
@@ -304,27 +327,32 @@ input{
             <div class="overlay game-over-message appearing">
               <div class="content content-level10">
                 <div>
-                  <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
+                  <div class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
+                    <div class="congrats-trophy">
+                      <img src="../assets/congrats_trophy.svg" alt="">
+                    </div>
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                   <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
                     <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
                     <br>
                     <br>
-                    <br>
-                  </p>
+                  </div>
                 </div>
 
                 <div>
-                  <p class="blur-text" :style="gameTutorialStyle" v-if="showNoLoseLevel">
+                  <div class="blur-text" :style="gameTutorialStyle" v-if="showNoLoseLevel">
+                    <div class="lose-hope-image">
+                      <img src="../assets/lose_hope.svg" alt="">
+                    </div>
                     <span :style="gameTutorialSmallStyle">Don't lose hope!</span>
                     <br>
                     <span :style="gameTutorialSmallStyle">Try Again!</span>
                     <br>
                     <br>
                     <br>
-                  </p>
+                  </div>
                 </div>
 
                 <div v-if="this.levelIndex === fireworkLevel">
@@ -337,7 +365,7 @@ input{
                                     url=""
                                     inline-template>
                       <network network="twitter">
-                        <a class="btn-primary">
+                        <a class="btn-primary btn-twitter">
                           <i class="fab fa-twitter"></i> Tweet
                         </a>
                       </network>
@@ -358,18 +386,22 @@ input{
               class="overlay game-over-message">
               <div class="content content-level10">
                 <div>
-                  <p style = "margin-bottom: 12px;" v-if="!isRedeemed && !isRedeeming"
-                    class="blur-text" :style="gameTutorialStyle">
-                    <span :style="gameTutorialGoodStyle">Congrats!</span>
-                    <br>
-                    <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
-                    <br>
-                   
-                     <span :style="gameTutorialGoodStyle">$20 of $ONE</span>
-                    <br>
-                
-                    
-                  </p>
+                  <div v-if="!isRedeemed && !isRedeeming">
+                    <img
+                      style="width: 30%;"
+                      src="../assets/win-trophy.svg" alt="Win trophy" class="win-trophy" />
+
+                    <p style = "margin-bottom: 12px;"
+                      class="blur-text" :style="gameTutorialStyle">
+
+                      <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
+                      <br>
+
+                      <span :style="gameTutorialGoodStyle">$20 of $ONE</span>
+                      <br>
+
+                    </p>
+                  </div>
 
                   <div v-if="isRedeeming" class="loading-section">
                     <img class="loading" src="../assets/loading.svg" alt="">
@@ -379,30 +411,30 @@ input{
                     <i class="fas fa-check-circle"></i>
                   </div>
                  <!-- <span :style="gameTutorialMediumStyle">Enter Binance Coupon Code:</span> -->
-                    
+
                   <div v-if="!isRedeeming" class="inputs">
                     <input  :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
                            @input="onCouponChange"
                            placeholder="Enter Binance referral ID"></input>
-                    <span 
+                    <span
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}
                     </span>
-                  <div class="buttons">
-                    <button :style="bijanStyle" v-if="!isRedeemed"
-                      class="btn-primary" @click="enterCouponCode">Enter ID
-                    </button>
+                    <div class="buttons" style="margin-left: 5px">
+                      <button :style="bijanStyle" v-if="!isRedeemed"
+                        class="btn-primary" @click="enterCouponCode">Redeem
+                      </button>
+                    </div>
                   </div>
-                  </div>
-                  <div class="texts" v-if="!isRedeemed && !isRedeeming">
-                    <a target="_blank" href="http://harmony.one">Get Binance referral ID</a>
-                  </div>
-              
-                  
+
+
                   <div class="buttons">
                   <div >
-                    <button :style="bijanLessStyle" v-if="!gameEnded && !isRedeemed && !isRedeeming" class="btn-primary" @click="keepPlaying">
-                    Skip ID
+                    <button
+                      :style="bijanLessStyle"
+                      v-if="!gameEnded && !isRedeemed && !isRedeeming"
+                      class="btn-primary continue-playing-button" @click="keepPlaying">
+                    Continue Playing
                     </button>
                   </div>
                 </div>
@@ -616,7 +648,7 @@ export default {
     },
     gameTutorialSmallGoodStyle() {
       return { fontSize: this.boardSizePx / 16 + "px",
-      color: '#482BFF'};
+      color: '#1B295E'};
     },
     gameTutorialTinyStyle() {
       return { fontSize: this.boardSizePx / 32 + "px" };
@@ -625,20 +657,25 @@ export default {
       return { fontSize: this.boardSizePx / 24 + "px" };
     },
     bijanStyle() {
-      return { "margin-top": this.boardSizePx / 100 + "px"};
+      return {
+        marginTop: 0,
+        marginLeft: 0,
+      };
     },
     bijanLessStyle() {
       return { "margin-top": this.boardSizePx / 48 + "px"};
     },
     bijanInputStyle(){
-      return {height: this.boardSizePx / 10 + "px"};
+      return {
+        // height: this.boardSizePx / 10 + "px"
+      };
     },
     gameTutorialLargeStyle() {
       return { fontSize: this.boardSizePx / 8 + "px" };
     },
     gameTutorialGoodStyle() {
       return { fontSize: this.boardSizePx / 14 + "px",
-              color: '#482BFF'};
+              color: '#1B295E'};
     },
     infoItemStyle() {
       return { fontSize: this.boardSizePx / 18 + "px" };

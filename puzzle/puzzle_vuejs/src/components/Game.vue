@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: space-around;
-  background-color: white;
+  background-color: #1B295E;
   outline: none;
   position: absolute;
   border-radius: 0.5em;
