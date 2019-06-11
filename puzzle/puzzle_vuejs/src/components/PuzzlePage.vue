@@ -1,4 +1,21 @@
 <style scoped lang="less">
+.redeem-help-link:before {
+  content: "want binance referral id?";
+
+  // width: 25px;
+  // height: 25px;
+  // line-height: 25px;
+  // display: inline-block;
+  // background: #828282;
+  // border-radius: 50%;
+  // color: #fff;
+  // font-weight: normal;
+}
+
+.btn-primary {
+  background: #1B295E;
+}
+
 .score-container {
   margin-right: auto;
   margin-left: auto;
@@ -12,7 +29,6 @@ footer {
   margin: 1em auto 0;
   .btn-primary {
     font-size: 1em;
-    background-color: #482bff;
   }
 }
 
@@ -34,7 +50,7 @@ footer {
 .game-over-message {
   font-weight: bold;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 1);
   border-radius: 0.3em;
 }
 
@@ -47,14 +63,18 @@ footer {
   justify-content: center;
 }
 
+.continue-playing-button {
+  margin-top: 9.17892px;
+  background: none;
+  border: 1px solid #1B295E;
+  border-radius: 6px;
+  color: #1B295E;
+}
+
 .content-level10 {
-  width: 100%;
-  height: 100%;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.5);
   .buttons {
     margin: 20px 0;
-    width: 150px;
+    width: 210px;
     margin: 0 auto;
     .btn-primary {
       width: 100%;
@@ -86,8 +106,8 @@ footer {
 }
 
 .appearing {
-  animation: appearing 2s;
-  -webkit-animation: appearing 2s;
+  animation: appearing 1.2s;
+  -webkit-animation: appearing 1.2s;
 }
 input{
     text-align:center;
@@ -223,18 +243,22 @@ input{
   text-decoration: none;
 }
 .input {
-
-  border-radius: 0.5em;
+  border-radius: 0.3em;
   border: 1px solid black;
-  background-color: #fff;
+  background-color: #f5f5f5;
   display: block;
   width: 100%;
   overflow: auto;
   -webkit-appearance: none;
   font-size: initial;
   outline: none;
-  margin-bottom: 0.5em;
 }
+
+.inputs {
+  display: flex;
+  margin: 0 10px;
+}
+
   .is-level10 {
     .inputs {
       background-color: "red" !important;
@@ -344,22 +368,22 @@ input{
             <div class="overlay game-over-message appearing">
               <div class="content content-level10">
                 <div>
-                  <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
+                  <div class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
                     <div class="congrats-trophy">
                       <img src="../assets/congrats_trophy.svg" alt="">
                     </div>
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
-                   <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
+                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
                     <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
                     <br>
                     <br>
-                  </p>
+                  </div>
                 </div>
 
                 <div>
-                  <p class="blur-text" :style="gameTutorialStyle" v-if="showNoLoseLevel">
+                  <div class="blur-text" :style="gameTutorialStyle" v-if="showNoLoseLevel">
                     <div class="lose-hope-image">
                       <img src="../assets/lose_hope.svg" alt="">
                     </div>
@@ -369,7 +393,7 @@ input{
                     <br>
                     <br>
                     <br>
-                  </p>
+                  </div>
                 </div>
 
                 <div v-if="this.levelIndex === fireworkLevel">
@@ -403,17 +427,25 @@ input{
               class="overlay game-over-message">
               <div class="content content-level10">
                 <div>
-                  <p style = "margin-bottom: 12px;" v-if="!isRedeemed && !isRedeeming"
-                    class="blur-text" :style="gameTutorialStyle">
+                  <div
+                    style="margin-bottom: 25px;"
+                    v-if="!isRedeemed && !isRedeeming"
+                  >
+                    <img
+                      style="width: 24%;"
+                      src="../assets/win-trophy.svg" alt="Win trophy" class="win-trophy" />
 
-                    <span :style="gameTutorialGoodStyle">Congrats!</span>
-                    <br>
-                    <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
-                    <br>
+                    <p style = "margin-bottom: 12px;"
+                      class="blur-text" :style="gameTutorialStyle">
 
-                     <span :style="gameTutorialGoodStyle">$20 of $ONE</span>
-                    <br>
-                  </p>
+                      <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
+                      <br>
+
+                      <span :style="gameTutorialGoodStyle">$20 of ONE tokens</span>
+                      <br>
+
+                    </p>
+                  </div>
 
                   <div v-if="isRedeeming" class="loading-section">
                     <img class="loading" src="../assets/loading.svg" alt="">
@@ -425,28 +457,33 @@ input{
                  <!-- <span :style="gameTutorialMediumStyle">Enter Binance Coupon Code:</span> -->
 
                   <div v-if="!isRedeeming" class="inputs">
-                    <input  :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
-                           @input="onCouponChange"
-                           placeholder="Enter Binance referral ID"></input>
+                    <input
+                      :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
+                      @input="onCouponChange"
+                      placeholder="Enter Binance referral ID"></input>
+                    <!-- <a
+                      href="http://harmony.one"
+                      class="redeem-help-link"
+                    ></a> -->
                     <span
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}
                     </span>
-                  <div class="buttons">
-                    <button :style="bijanStyle" v-if="!isRedeemed"
-                      class="btn-primary" @click="enterCouponCode">Enter ID
-                    </button>
-                  </div>
-                  </div>
-                  <div class="texts" v-if="!isRedeemed && !isRedeeming">
-                    <a target="_blank" href="http://harmony.one">Get Binance referral ID</a>
+                    <div class="buttons" style="margin-left: 5px">
+                      <button :style="bijanStyle" v-if="!isRedeemed"
+                        class="btn-primary" @click="enterCouponCode">Redeem
+                      </button>
+                    </div>
                   </div>
 
 
                   <div class="buttons">
                   <div >
-                    <button :style="bijanLessStyle" v-if="!gameEnded && !isRedeemed && !isRedeeming" class="btn-primary" @click="keepPlaying">
-                    Skip ID
+                    <button
+                      :style="bijanLessStyle"
+                      v-if="!gameEnded && !isRedeemed && !isRedeeming"
+                      class="btn-primary continue-playing-button" @click="keepPlaying">
+                    Continue Playing
                     </button>
                   </div>
                 </div>
@@ -660,7 +697,7 @@ export default {
     },
     gameTutorialSmallGoodStyle() {
       return { fontSize: this.boardSizePx / 16 + "px",
-      color: '#482BFF'};
+      color: '#1B295E'};
     },
     gameTutorialTinyStyle() {
       return { fontSize: this.boardSizePx / 32 + "px" };
@@ -669,20 +706,28 @@ export default {
       return { fontSize: this.boardSizePx / 24 + "px" };
     },
     bijanStyle() {
-      return { "margin-top": this.boardSizePx / 100 + "px"};
+      return {
+        marginTop: 0,
+        marginLeft: 0,
+      };
     },
     bijanLessStyle() {
-      return { "margin-top": this.boardSizePx / 48 + "px"};
+      return {
+        "margin-top": 30 + "px",
+        "margin-bottom": 10 + "px",
+      };
     },
     bijanInputStyle(){
-      return {height: this.boardSizePx / 10 + "px"};
+      return {
+        // height: this.boardSizePx / 10 + "px"
+      };
     },
     gameTutorialLargeStyle() {
       return { fontSize: this.boardSizePx / 8 + "px" };
     },
     gameTutorialGoodStyle() {
       return { fontSize: this.boardSizePx / 14 + "px",
-              color: '#482BFF'};
+              color: '#1B295E'};
     },
     infoItemStyle() {
       return { fontSize: this.boardSizePx / 18 + "px" };
@@ -914,7 +959,7 @@ export default {
     enterCouponCode() {
       const isValidCouponCode = this.validCouponCode(this.couponCode);
       if (!isValidCouponCode) {
-        this.redeemMessage = 'referral ID is not valid.';
+        this.redeemMessage = 'ID is not valid.';
         return;
       }
 

@@ -9,7 +9,7 @@ const colors = [
     fg: "white"
   },
   {
-    bg: "#00E0FF",
+    bg: "#69FABD",
     fg: "#1B2A5E"
   },
   {

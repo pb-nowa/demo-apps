@@ -83,7 +83,7 @@ footer {
   font-size: 1em;
   background-color: transparent;
   border: 0;
-  color: #482aff;
+  color: #1B295E;
   outline: none;
   &:disabled {
     opacity: 0.5;
@@ -93,7 +93,7 @@ footer {
 
 .btn-primary {
   font-size: 1em;
-  background-color: #482bff;
+  background-color: #1B295E;
 }
 </style>
 

@@ -85,8 +85,8 @@ html {
 }
 
 .btn-primary {
-  padding: 0.7em 1.0em;
-  font-size: 1.1em;
+  padding: 10px 1.0em;
+  font-size: 0.85em;
   margin-right: 0em;
   margin-left: 0em;
   margin-top: 1em;
