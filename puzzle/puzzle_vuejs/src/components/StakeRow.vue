@@ -143,11 +143,14 @@ footer {
 <script>
 import service from "../service";
 import store from "../store";
+import utils from '../utils/utils';
 export default {
   name: "StakeRow",
   props: {
     isLevel10: Boolean,
-    gameEnded: Boolean
+    gameEnded: Boolean,
+    mute: Boolean,
+    playSound: Function
   },
   data() {
     return {
@@ -172,8 +175,9 @@ export default {
       if (this.globalData.stake + 20 > this.globalData.balance) return;
       this.globalData.stake += 20;
     },
+
     stakeToken() {
-      playBackgroundMusic();
+      this.playSound()
       service
         .stakeToken(this.globalData.privkey, this.globalData.stake)
         .then(() => {
