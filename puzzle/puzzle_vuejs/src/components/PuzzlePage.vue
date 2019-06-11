@@ -490,6 +490,13 @@ input{
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}"
                     >
                       {{this.redeemMessage}}
+                      <span>                        
+                        <a
+                          v-if="couponCode && !validCouponCode(couponCode)" 
+                          target="_blank"
+                          href="http://harmony.one"                        
+                        >Get ID here</a>
+                      </span>
                     </p>
                   </div>
 
