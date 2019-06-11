@@ -313,12 +313,14 @@ input{
               <div class="content content-level10">
                 <div>
                   <p class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
+                    <div class="congrats-trophy">
+                      <img src="../assets/congrats_trophy.svg" alt="">
+                    </div>
                     <span :style="gameTutorialSmallStyle">Congrats!</span>
                     <br>
                    <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
                     <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
-                    <br>
                     <br>
                     <br>
                   </p>
@@ -348,7 +350,7 @@ input{
                                     url=""
                                     inline-template>
                       <network network="twitter">
-                        <a class="btn-primary">
+                        <a class="btn-primary btn-twitter">
                           <i class="fab fa-twitter"></i> Tweet
                         </a>
                       </network>
@@ -371,6 +373,7 @@ input{
                 <div>
                   <p style = "margin-bottom: 12px;" v-if="!isRedeemed && !isRedeeming"
                     class="blur-text" :style="gameTutorialStyle">
+
                     <span :style="gameTutorialGoodStyle">Congrats!</span>
                     <br>
                     <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
@@ -378,8 +381,6 @@ input{
 
                      <span :style="gameTutorialGoodStyle">$20 of $ONE</span>
                     <br>
-
-
                   </p>
 
                   <div v-if="isRedeeming" class="loading-section">

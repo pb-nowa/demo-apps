@@ -14,7 +14,7 @@ body,
 }
 body,
 html {
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   color: #2c3e50;
   font-size: 18px;
   margin: 0;
@@ -168,11 +168,12 @@ p + p {
 }
 .btn-twitter {
   cursor: pointer;
-  background: #00ACEE;
+  background: #4D9FEC;
   color: #fff;
   border: 1px solid #0075a2;
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 4px;
+  font-size: 14px;
 }
 .btn-twitter:link, .btn-twitter:visited {
   color: #fff;
