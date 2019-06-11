@@ -15,7 +15,7 @@
     position: relative;
     border-radius: 7%;
     &.selected {
-      box-shadow: 0 0 0 0.4em rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 0 0.4em rgba(255, 255, 255, 1);
     }
     .chip {
       position: absolute;

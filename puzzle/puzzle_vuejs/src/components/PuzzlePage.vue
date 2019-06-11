@@ -122,6 +122,10 @@ input{
     opacity: 1;
   }
 
+  25% {
+    opacity: 1;
+  }
+
   100% {
     opacity: 0;
   }
@@ -291,31 +295,35 @@ input{
     margin-bottom: 10px;
   }
 
+.congrats-trophy {
+  margin-top: -5px;
+}
+
 // Large devices (desktops, less than 1200px)
 @media (max-width: 1199.98px) {
   .congrats-trophy img {
-    width: 250px;
+    width: 150px;
   }
 }
 
 // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {
   .congrats-trophy img {
-    width: 200px;
+    width: 100px;
   }
 }
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
   .congrats-trophy img {
-    width: 150px;
+    width: 100px;
   }
 }
 
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
   .congrats-trophy img {
-    width: 120px;
+    width: 100px;
   }
 }
 
@@ -376,9 +384,13 @@ input{
                     <br>
                     <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
-                    <span v-if="gameEnded" :style="gameTutorialSmallStyle">Tweet your success!</span>
-                    <br>
-                    <br>
+                    <div 
+                      v-if="gameEnded" 
+                      style="
+                        font-size: 17px;
+                        margin: 2em 0 1.5em;
+                      "
+                    >Tweet your success!</div>
                   </div>
                 </div>
 
@@ -460,15 +472,11 @@ input{
                     <input
                       :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
                       @input="onCouponChange"
-                      placeholder="Enter Binance referral ID"></input>
+                      placeholder="Enter Binance referral ID" />
                     <!-- <a
                       href="http://harmony.one"
                       class="redeem-help-link"
                     ></a> -->
-                    <span
-                      v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
-                      {{this.redeemMessage}}
-                    </span>
                     <div class="buttons" style="margin-left: 5px">
                       <button :style="bijanStyle" v-if="!isRedeemed"
                         class="btn-primary" @click="enterCouponCode">Redeem
@@ -476,6 +484,14 @@ input{
                     </div>
                   </div>
 
+                  <div v-if="!isRedeeming">
+                    <p
+                      style="max-width: 20em;"
+                      v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}"
+                    >
+                      {{this.redeemMessage}}
+                    </p>
+                  </div>
 
                   <div class="buttons">
                   <div >
