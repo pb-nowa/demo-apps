@@ -1,4 +1,17 @@
 <style scoped lang="less">
+.redeem-help-link:before {
+  content: "want binance referral id?";
+
+  // width: 25px;
+  // height: 25px;
+  // line-height: 25px;
+  // display: inline-block;
+  // background: #828282;
+  // border-radius: 50%;
+  // color: #fff;
+  // font-weight: normal;
+}
+
 .btn-primary {
   background: #1B295E;
 }
@@ -37,7 +50,7 @@ footer {
 .game-over-message {
   font-weight: bold;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 1);
   border-radius: 0.3em;
 }
 
@@ -59,7 +72,6 @@ footer {
 }
 
 .content-level10 {
-  // background: rgba(255, 255, 255, 0.2);
   .buttons {
     margin: 20px 0;
     width: 210px;
@@ -94,8 +106,8 @@ footer {
 }
 
 .appearing {
-  animation: appearing 2s;
-  -webkit-animation: appearing 2s;
+  animation: appearing 1.2s;
+  -webkit-animation: appearing 1.2s;
 }
 input{
     text-align:center;
@@ -231,9 +243,9 @@ input{
   text-decoration: none;
 }
 .input {
-  border-radius: 0.5em;
+  border-radius: 0.3em;
   border: 1px solid black;
-  background-color: #fff;
+  background-color: #f5f5f5;
   display: block;
   width: 100%;
   overflow: auto;
@@ -278,6 +290,34 @@ input{
 
     margin-bottom: 10px;
   }
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+  .congrats-trophy img {
+    width: 250px;
+  }
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+  .congrats-trophy img {
+    width: 200px;
+  }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  .congrats-trophy img {
+    width: 150px;
+  }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  .congrats-trophy img {
+    width: 120px;
+  }
+}
 
 </style>
 
@@ -324,6 +364,7 @@ input{
 
         <div class="board-wrapper" :style="boardWrapperStyle">
           <div v-if="gameEnded">
+<!--            <div v-if="true">-->
             <div class="overlay game-over-message appearing">
               <div class="content content-level10">
                 <div>
@@ -386,9 +427,12 @@ input{
               class="overlay game-over-message">
               <div class="content content-level10">
                 <div>
-                  <div v-if="!isRedeemed && !isRedeeming">
+                  <div
+                    style="margin-bottom: 25px;"
+                    v-if="!isRedeemed && !isRedeeming"
+                  >
                     <img
-                      style="width: 30%;"
+                      style="width: 24%;"
                       src="../assets/win-trophy.svg" alt="Win trophy" class="win-trophy" />
 
                     <p style = "margin-bottom: 12px;"
@@ -397,7 +441,7 @@ input{
                       <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
                       <br>
 
-                      <span :style="gameTutorialGoodStyle">$20 of $ONE</span>
+                      <span :style="gameTutorialGoodStyle">$20 of ONE tokens</span>
                       <br>
 
                     </p>
@@ -413,9 +457,14 @@ input{
                  <!-- <span :style="gameTutorialMediumStyle">Enter Binance Coupon Code:</span> -->
 
                   <div v-if="!isRedeeming" class="inputs">
-                    <input  :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
-                           @input="onCouponChange"
-                           placeholder="Enter Binance referral ID"></input>
+                    <input
+                      :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
+                      @input="onCouponChange"
+                      placeholder="Enter Binance referral ID"></input>
+                    <!-- <a
+                      href="http://harmony.one"
+                      class="redeem-help-link"
+                    ></a> -->
                     <span
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}
@@ -663,7 +712,10 @@ export default {
       };
     },
     bijanLessStyle() {
-      return { "margin-top": this.boardSizePx / 48 + "px"};
+      return {
+        "margin-top": 30 + "px",
+        "margin-bottom": 10 + "px",
+      };
     },
     bijanInputStyle(){
       return {
@@ -907,7 +959,7 @@ export default {
     enterCouponCode() {
       const isValidCouponCode = this.validCouponCode(this.couponCode);
       if (!isValidCouponCode) {
-        this.redeemMessage = 'referral ID is not valid.';
+        this.redeemMessage = 'ID is not valid.';
         return;
       }
 
