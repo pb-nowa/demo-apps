@@ -365,7 +365,7 @@ input{
                     <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
                     <br>
                    
-                     <span :style="gameTutorialGoodStyle">$100 of $ONE</span>
+                     <span :style="gameTutorialGoodStyle">$20 of $ONE</span>
                     <br>
                 
                     
@@ -383,26 +383,26 @@ input{
                   <div v-if="!isRedeeming" class="inputs">
                     <input  :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
                            @input="onCouponChange"
-                           placeholder="Enter Binance Coupon Code"></input>
+                           placeholder="Enter Binance referral ID"></input>
                     <span 
                       v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}">
                       {{this.redeemMessage}}
                     </span>
                   <div class="buttons">
                     <button :style="bijanStyle" v-if="!isRedeemed"
-                      class="btn-primary" @click="enterCouponCode">Redeem
+                      class="btn-primary" @click="enterCouponCode">Enter ID
                     </button>
                   </div>
                   </div>
                   <div class="texts" v-if="!isRedeemed && !isRedeeming">
-                    <a target="_blank" href="http://harmony.one">Get Binance Coupon Code</a>
+                    <a target="_blank" href="http://harmony.one">Get Binance referral ID</a>
                   </div>
               
                   
                   <div class="buttons">
                   <div >
                     <button :style="bijanLessStyle" v-if="!gameEnded && !isRedeemed && !isRedeeming" class="btn-primary" @click="keepPlaying">
-                    Skip Code
+                    Skip ID
                     </button>
                   </div>
                 </div>
@@ -625,10 +625,10 @@ export default {
       return { fontSize: this.boardSizePx / 24 + "px" };
     },
     bijanStyle() {
-      return { "margin-top": this.boardSizePx / 1000 + "px"};
+      return { "margin-top": this.boardSizePx / 100 + "px"};
     },
     bijanLessStyle() {
-      return { "margin-top": this.boardSizePx / 24 + "px"};
+      return { "margin-top": this.boardSizePx / 48 + "px"};
     },
     bijanInputStyle(){
       return {height: this.boardSizePx / 10 + "px"};
@@ -870,19 +870,19 @@ export default {
     enterCouponCode() {
       const isValidCouponCode = this.validCouponCode(this.couponCode);
       if (!isValidCouponCode) {
-        this.redeemMessage = 'Coupon code is not valid.';
+        this.redeemMessage = 'referral ID is not valid.';
         return;
       }
 
       this.isRedeeming = true;
       service.submitCoupon(this.couponCode).then((res) => {
-        this.redeemMessage = 'You have successfully redeemed the code.';
+        this.redeemMessage = 'You have successfully entered the Binance referral ID';
         this.isRedeemed = true;
         setTimeout(() => {
           this.keepPlaying();
         }, 2000)
       }).catch((err) => {
-        console.error(`There was an error while submitting the coupon code ${this.couponCode}: ${err}`)
+        console.error(`There was an error while submitting the referral ID ${this.couponCode}: ${err}`)
         this.redeemMessage = 'Server error, please try again later. Sorry for the inconvenience.'
         this.isRedeemed = false;
       }).finally(() => {
@@ -897,7 +897,7 @@ export default {
       }
       const isValidCouponCode = this.validCouponCode(this.couponCode);
       if (!isValidCouponCode) {
-        this.redeemMessage = 'Coupon code is not valid.';
+        this.redeemMessage = 'Referral ID is not valid.';
         return;
       }
 
