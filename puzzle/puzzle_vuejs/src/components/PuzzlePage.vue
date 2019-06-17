@@ -334,7 +334,7 @@ input{
     <div class="main-container appearing">
       <div class="game-container" ref="gameContainer">
         <a
-          :href="'https://explorer2.harmony.one/#/address/' + globalData.address"
+          :href="'https://harmony.one/'"
           class="logo"
           target="_blank"
         ></a>
