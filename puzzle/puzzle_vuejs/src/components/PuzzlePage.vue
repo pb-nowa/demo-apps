@@ -645,7 +645,7 @@ export default {
     return {
       // constants
       fireworkLevel: 99,
-      showCouponLevel: 1,
+      showCouponLevel: 9,
 
       // variables
       globalData: store.data,
@@ -796,7 +796,7 @@ export default {
      * @return {string}
      */
     twitterTitle() {
-      return `I finished level ${this.levelIndex} of #harmonypuzzle! See my winning moves on @harmonyprotocol #blockchain https://explorer2.harmony.one/#/address/${this.globalData.address} Play it at https://puzzle.harmony.one`
+      return `I finished level ${this.levelIndex} of #harmonypuzzle of @harmonyprotocol. Play it at https://puzzle.harmony.one`
     },
 
     showTwitterLevel() {
