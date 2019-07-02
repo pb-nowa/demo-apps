@@ -376,7 +376,7 @@ input{
             <div class="overlay game-over-message appearing">
               <div class="content content-level10">
                 <div>
-                  <div class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex > showCouponLevel">
+                  <div class="blur-text" :style="gameTutorialStyle" v-if="this.levelIndex >= levelToShowTwitter">
                     <div class="congrats-trophy">
                       <img src="../assets/congrats_trophy.svg" alt="">
                     </div>
@@ -384,8 +384,8 @@ input{
                     <br>
                     <span :style="gameTutorialSmallStyle">You finished level {{ this.levelIndex }}</span>
                     <br>
-                    <div 
-                      v-if="gameEnded" 
+                    <div
+                      v-if="gameEnded"
                       style="
                         font-size: 17px;
                         margin: 2em 0 1.5em;
@@ -427,92 +427,6 @@ input{
                 </div>
                 <div>
 
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="is-level10"
-               v-if="isLevel10 && !gameEnded">
-            <div
-              v-bind:class="[isRedeemed ? 'is-redeemed' : 'appearing']"
-              class="overlay game-over-message">
-              <div class="content content-level10">
-                <div>
-                  <div
-                    style="margin-bottom: 25px;"
-                    v-if="!isRedeemed && !isRedeeming"
-                  >
-                    <img
-                      style="width: 24%;"
-                      src="../assets/win-trophy.svg" alt="Win trophy" class="win-trophy" />
-
-                    <p style = "margin-bottom: 12px;"
-                      class="blur-text" :style="gameTutorialStyle">
-
-                      <span :style="gameTutorialSmallGoodStyle">You have a chance to win</span>
-                      <br>
-
-                      <span :style="gameTutorialGoodStyle">$20 of ONE tokens</span>
-                      <br>
-
-                    </p>
-                  </div>
-
-                  <div v-if="isRedeeming" class="loading-section">
-                    <img class="loading" src="../assets/loading.svg" alt="">
-                  </div>
-
-                  <div v-if="isRedeemed" class="redeemed-section">
-                    <i class="fas fa-check-circle"></i>
-                  </div>
-                 <!-- <span :style="gameTutorialMediumStyle">Enter Binance Coupon Code:</span> -->
-
-                  <div v-if="!isRedeeming" class="inputs">
-                    <input
-                      :style= "bijanInputStyle" v-if="!isRedeemed" class="input" v-model="couponCode"
-                      @input="onCouponChange"
-                      placeholder="Enter Binance referral ID" />
-                    <!-- <a
-                      href="http://harmony.one"
-                      class="redeem-help-link"
-                    ></a> -->
-                    <div class="buttons" style="margin-left: 5px">
-                      <button :style="bijanStyle" v-if="!isRedeemed"
-                        class="btn-primary" @click="enterCouponCode">Redeem
-                      </button>
-                    </div>
-                  </div>
-
-                  <div v-if="!isRedeeming">
-                    <p
-                      style="max-width: 20em;"
-                      v-bind:class="{'input-error': !isRedeemed, 'input-success': isRedeemed}"
-                    >
-                      {{this.redeemMessage}}
-                      <span>                        
-                        <a
-                          v-if="couponCode && !validCouponCode(couponCode)" 
-                          target="_blank"
-                          href="http://harmony.one"                        
-                        >Get ID here</a>
-                      </span>
-                    </p>
-                  </div>
-
-                  <div class="buttons">
-                  <div >
-                    <button
-                      :style="bijanLessStyle"
-                      v-if="!gameEnded && !isRedeemed && !isRedeeming"
-                      class="btn-primary continue-playing-button" @click="keepPlaying">
-                    Continue Playing
-                    </button>
-                  </div>
-                </div>
-                </div>
-
-                <div>
                 </div>
               </div>
             </div>
@@ -586,7 +500,6 @@ import Game from "./Game";
 import Chip from "./Chip";
 import StakeRow from "./StakeRow";
 import TxHistoryLink from "./TxHistoryLink";
-import RedeemPanel from "./RedeemPanel";
 import { TweenLite } from "gsap/TweenMax";
 import Vue from "vue";
 import service from "../service";
@@ -638,14 +551,15 @@ export default {
     Chip,
     StakeRow,
     TxHistoryLink,
-    RedeemPanel,
     Fireworks
   },
   data() {
     return {
       // constants
       fireworkLevel: 99,
-      showCouponLevel: 1,
+      showCouponLevel: 99,
+      levelToShowTwitter: 10,
+      levelToShowNoLose: 9,
 
       // variables
       globalData: store.data,
@@ -666,12 +580,6 @@ export default {
       isMobile: mobilecheck(),
       reward: 0,
       cancelEmail: false,
-      couponCode: "",
-
-      // redeem code component
-      redeemMessage: "",
-      isRedeemed: false,
-      isRedeeming: false
     };
   },
   mounted() {
@@ -800,11 +708,11 @@ export default {
     },
 
     showTwitterLevel() {
-      return this.levelIndex > this.showCouponLevel;
+      return this.levelIndex >= this.levelToShowTwitter;
     },
 
     showNoLoseLevel() {
-      return this.levelIndex <= this.showCouponLevel;
+      return this.levelIndex <= this.levelToShowNoLose;
     },
 
     /**
@@ -864,11 +772,6 @@ export default {
       this.gaTrack(this.levelIndex);
       this.trackTimePlayed();
 
-      if (this.levelIndex === this.showCouponLevel) {
-        this.endLevel10()
-        return;
-      }
-
       if (this.levelIndex === this.levels.length - 1) {
         this.endLastGame();
         return;
@@ -887,12 +790,6 @@ export default {
             this.balanceIncrease = "";
           });
         });
-    },
-    endLevel10() {
-      stopBackgroundMusic()
-      this.isLevel10 = true;
-      clearInterval(this.timer);
-      clearInterval(this.timePlayedTimer)
     },
     endGame() {
       stopBackgroundMusic();
@@ -913,12 +810,6 @@ export default {
     },
     closeEmailPopup() {
       this.cancelEmail = true;
-    },
-    keepPlaying() {
-      playBackgroundMusic();
-      this.isLevel10 = false;
-      this.levelIndex++;
-      this.startTimer();
     },
     startTimer() {
       this.timer = setInterval(() => {
@@ -971,50 +862,6 @@ export default {
       this.$ga.event('puzzle-game', 'reload-game', this.userGameLevel())
       window.location.reload();
     },
-
-    validCouponCode(s) {
-      return VALIDATE.validateNumber(s);
-    },
-
-    /**
-     * Enter coupon code
-     */
-    enterCouponCode() {
-      const isValidCouponCode = this.validCouponCode(this.couponCode);
-      if (!isValidCouponCode) {
-        this.redeemMessage = 'ID is not valid.';
-        return;
-      }
-
-      this.isRedeeming = true;
-      service.submitCoupon(this.couponCode).then((res) => {
-        this.redeemMessage = 'You have successfully entered the Binance referral ID';
-        this.isRedeemed = true;
-        setTimeout(() => {
-          this.keepPlaying();
-        }, 2000)
-      }).catch((err) => {
-        console.error(`There was an error while submitting the referral ID ${this.couponCode}: ${err}`)
-        this.redeemMessage = 'Server error, please try again later. Sorry for the inconvenience.'
-        this.isRedeemed = false;
-      }).finally(() => {
-        this.isRedeeming = false;
-      })
-    },
-
-    onCouponChange(e) {
-      if (this.couponCode === '') {
-        this.redeemMessage = '';
-        return;
-      }
-      const isValidCouponCode = this.validCouponCode(this.couponCode);
-      if (!isValidCouponCode) {
-        this.redeemMessage = 'Referral ID is not valid.';
-        return;
-      }
-
-      this.redeemMessage = '';
-    }
   }
 };
 </script>
