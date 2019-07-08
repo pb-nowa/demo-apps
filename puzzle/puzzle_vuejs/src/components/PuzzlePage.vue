@@ -225,7 +225,8 @@ input{
   flex: 1;
 }
 .icon-clock,
-.icon-token {
+.icon-token,
+.icon-mute {
   background-size: contain;
 }
 
@@ -234,6 +235,9 @@ input{
 }
 .icon-token {
   background-image: url(../assets/token.svg);
+}
+.icon-mute {
+  background-image: url(../assets/music_mute.svg);
 }
 .level-text {
   font-weight: bold;
@@ -491,6 +495,7 @@ input{
         </footer>
         <div class="link-footer"></div>
       </div>
+      <div class="icon-mute" :style="iconMuteStyle"></div>
     </div>
   </div>
 </template>
@@ -689,6 +694,12 @@ export default {
         width: this.boardSizePx / 12 + "px",
         height: this.boardSizePx / 12 + "px"
       };
+    },
+    iconMuteStyle() {
+      return {
+        width: this.boardSizePx / 12 + "px",
+        height: this.boardSizePx / 12 + "px"
+      }
     },
     boardWrapperStyle() {
       return {
