@@ -496,7 +496,7 @@ input{
         <div class="link-footer"></div>
       </div>
       <div class="flex-horizontal ">    
-        <div class="icon-mute" @click="muteBackgroundMusic" :style="iconMuteStyle"></div>
+        <div class="icon-mute" @click="handleMusicMute" :style="iconMuteStyle"></div>
       </div>
     </div>
   </div>
@@ -849,14 +849,13 @@ export default {
       this.resetTimePlayed();
     },
 
-    muteBackgroundMusic() {
+    handleMusicMute() {
       this.globalData.muted = !this.globalData.muted;
       if (this.globalData.muted) {
         muteBackgroundMusic();
       } else {
         unmuteBackgroundMusic();
       }
-      console.log(this.globalData.muted);
     },
 
     /**
@@ -884,8 +883,10 @@ export default {
      * Reload the game entirely
      */
     reloadGame() {
-      this.$ga.event('puzzle-game', 'reload-game', this.userGameLevel())
-      window.localStorage.setItem('muted', this.globalData.muted);
+      this.$ga.event('puzzle-game', 'reload-game', this.userGameLevel());
+
+      const muted = this.globalData.muted ? "true" : "";
+      window.localStorage.setItem('muted', muted);
       window.location.reload();
     },
   }

@@ -11,7 +11,7 @@ let store = {
         stake: 20,
         email: '',
         coupon: '',
-        muted: window.localStorage.getItem('muted'),
+        muted: window.localStorage.getItem('muted') === 'true' ? true : false,
     },
     addTx(tx) {
         this.data.txs.push(tx);
