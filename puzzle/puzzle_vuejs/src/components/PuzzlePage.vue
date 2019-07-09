@@ -496,7 +496,7 @@ input{
         <div class="link-footer"></div>
       </div>
       <div class="flex-horizontal ">    
-        <div class="icon-mute" @click="handleMusicMute" :style="iconMuteStyle"></div>
+      <div class="icon-mute" @click="handleMusicMute" :style="iconMuteStyle"></div>
       </div>
     </div>
   </div>
@@ -700,7 +700,7 @@ export default {
     iconMuteStyle() {
       return {
         width: this.boardSizePx / 12 + "px",
-        height: this.boardSizePx / 12 + "px"
+        height: this.boardSizePx / 12.7 + "px"
       }
     },
     boardWrapperStyle() {
