@@ -226,19 +226,27 @@ input{
 }
 .icon-clock,
 .icon-token,
-.icon-mute {
+.icon-setting {
   background-size: contain;
 }
-
+.icon-setting {
+  margin: 0 auto;
+  transform: scale(0.5);
+}
 .icon-clock {
   background-image: url(../assets/clock.svg);
 }
 .icon-token {
   background-image: url(../assets/token.svg);
 }
-.icon-mute {
+.icon-playing {
   background-image: url(../assets/music_mute.svg);
 }
+.icon-mute {
+  background-image: url(../assets/music_playing.svg);
+
+}
+
 .level-text {
   font-weight: bold;
 }
@@ -496,8 +504,12 @@ input{
         <div class="link-footer"></div>
       </div>
       <div class="flex-horizontal ">    
-      <div class="icon-mute" @click="handleMusicMute" :style="iconMuteStyle"></div>
       </div>
+      <div 
+          class="icon-setting"
+          :class="{ 'icon-mute' : !globalData.muted, 'icon-playing' : globalData.muted }"
+          @click="handleMusicMute" :style="iconMuteStyle"></div>
+    </div>
     </div>
   </div>
 </template>
@@ -698,10 +710,15 @@ export default {
       };
     },
     iconMuteStyle() {
-      return {
+      return this.globalData.muted ? 
+      {
         width: this.boardSizePx / 12 + "px",
-        height: this.boardSizePx / 12.7 + "px"
-      }
+        height: this.boardSizePx / 12.2 + "px"
+      } :
+      {
+        width: this.boardSizePx / 12 + "px",
+        height: this.boardSizePx / 10.6 + "px"
+      } 
     },
     boardWrapperStyle() {
       return {
