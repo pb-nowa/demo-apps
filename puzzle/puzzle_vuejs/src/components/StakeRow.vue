@@ -174,7 +174,6 @@ export default {
     },
     stakeToken() {
       playBackgroundMusic();
-      this.globalData.muted = true;
       service
         .stakeToken(this.globalData.privkey, this.globalData.stake)
         .then(() => {

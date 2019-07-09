@@ -44,6 +44,14 @@ stopSound = audio => {
   audio.currentTime = 0;
 };
 
+muteAudio = audio => {
+  audio.muted = true;
+};
+
+unmuteAudio = audio => {
+  audio.muted = false;
+};
+
 playMoveSound = () => {
   playSound(moveSound);
 };
@@ -64,6 +72,14 @@ stopBackgroundMusic = () => {
   stopSound(backgroundMusicAudio);
 };
 
+muteBackgroundMusic = () => {
+  muteAudio(backgroundMusicAudio);
+};
+
+unmuteBackgroundMusic = () => {
+  unmuteAudio(backgroundMusicAudio);
+};
+
 playPostGameMusic = () => {
   playAudio(postGameMusicAudio);
 };
@@ -72,5 +88,7 @@ module.exports = {
   playMoveSound,
   playBeginSound,
   playEndSound,
-  playBackgroundMusic
+  playBackgroundMusic,
+  muteBackgroundMusic,
+  unmuteBackgroundMusic
 };

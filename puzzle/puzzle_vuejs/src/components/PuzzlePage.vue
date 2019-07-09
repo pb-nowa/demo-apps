@@ -851,7 +851,11 @@ export default {
 
     muteBackgroundMusic() {
       this.globalData.muted = !this.globalData.muted;
-      console.log(this.globalData.muted)
+      if (this.globalData.muted) {
+        muteBackgroundMusic();
+      } else {
+        unmuteBackgroundMusic();
+      }
     },
 
     /**
