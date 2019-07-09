@@ -10,7 +10,8 @@ let store = {
         address: '',
         stake: 20,
         email: '',
-        coupon: ''
+        coupon: '',
+        muted: false,
     },
     addTx(tx) {
         this.data.txs.push(tx);

@@ -495,7 +495,9 @@ input{
         </footer>
         <div class="link-footer"></div>
       </div>
-      <div class="icon-mute" :style="iconMuteStyle"></div>
+      <div class="flex-horizontal ">    
+        <div class="icon-mute" @click="muteBackgroundMusic" :style="iconMuteStyle"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -845,6 +847,11 @@ export default {
       const currentLevel = this.levelIndex + 1;
       this.$ga.event('time-played', `game-level-${currentLevel}`, this.timePlayed.toString())
       this.resetTimePlayed();
+    },
+
+    muteBackgroundMusic() {
+      this.globalData.muted = !this.globalData.muted;
+      console.log(this.globalData.muted)
     },
 
     /**
