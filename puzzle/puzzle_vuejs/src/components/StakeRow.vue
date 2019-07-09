@@ -173,7 +173,12 @@ export default {
       this.globalData.stake += 20;
     },
     stakeToken() {
-      playBackgroundMusic();
+      if (!this.globalData.muted) {
+        playBackgroundMusic();
+      } else {
+        playBackgroundMusic();
+        muteBackgroundMusic();
+      }
       service
         .stakeToken(this.globalData.privkey, this.globalData.stake)
         .then(() => {

@@ -11,7 +11,7 @@ let store = {
         stake: 20,
         email: '',
         coupon: '',
-        muted: false,
+        muted: window.localStorage.getItem('muted'),
     },
     addTx(tx) {
         this.data.txs.push(tx);

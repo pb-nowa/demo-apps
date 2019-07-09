@@ -856,13 +856,16 @@ export default {
       } else {
         unmuteBackgroundMusic();
       }
+      console.log(this.globalData.muted);
     },
 
     /**
      * Restart the game but still keeps the current point
      */
     restartGame() {
-      playBackgroundMusic();
+      if (!this.globalData.muted) {
+        playBackgroundMusic();
+      }
       this.levelIndex = 0;
       this.isLevel10 = false;
       this.gameStarted = true;
@@ -882,6 +885,7 @@ export default {
      */
     reloadGame() {
       this.$ga.event('puzzle-game', 'reload-game', this.userGameLevel())
+      window.localStorage.setItem('muted', this.globalData.muted);
       window.location.reload();
     },
   }
