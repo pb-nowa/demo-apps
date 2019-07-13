@@ -230,8 +230,10 @@ input{
   background-size: contain;
 }
 .icon-setting {
-  margin: 0 auto;
-  transform: scale(0.5);
+  transform: scale(.5);
+  position: absolute;
+  top: -4px;
+  right: 0;
 }
 .icon-clock {
   background-image: url(../assets/clock.svg);
@@ -345,6 +347,12 @@ input{
   <div id="app">
     <div class="main-container appearing">
       <div class="game-container" ref="gameContainer">
+        <div 
+            class="icon-setting"
+            :class="{ 'icon-mute' : !globalData.muted, 'icon-playing' : globalData.muted }"
+            @click="handleMusicMute" :style="iconMuteStyle">
+        </div>
+
         <a
           :href="'https://explorer2.harmony.one/#/address/' + globalData.address"
           class="logo"
@@ -503,13 +511,6 @@ input{
         </footer>
         <div class="link-footer"></div>
       </div>
-      <div class="flex-horizontal ">    
-      </div>
-      <div 
-          class="icon-setting"
-          :class="{ 'icon-mute' : !globalData.muted, 'icon-playing' : globalData.muted }"
-          @click="handleMusicMute" :style="iconMuteStyle"></div>
-    </div>
     </div>
   </div>
 </template>
@@ -713,11 +714,11 @@ export default {
       return this.globalData.muted ? 
       {
         width: this.boardSizePx / 12 + "px",
-        height: this.boardSizePx / 12.2 + "px"
+        height: this.boardSizePx / 12.8 + "px"
       } :
       {
         width: this.boardSizePx / 12 + "px",
-        height: this.boardSizePx / 10.6 + "px"
+        height: this.boardSizePx / 11.2 + "px"
       } 
     },
     boardWrapperStyle() {
